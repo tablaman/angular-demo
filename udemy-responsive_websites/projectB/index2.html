@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My first Bootstrap website!</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+  </head>
+  <body>
+    <!-- The navigation -->
+    <div class="top-bar"></div>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">
+            <img src="images/logo.png" alt="clean & clear">
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Innovate <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Learn</a></li>
+                <li><a href="#">Another Blog</a></li>
+                
+                <li class="divider"></li>
+                <li><a href="#">Inspire!</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+         
+          <ul class="nav navbar-nav navbar-right">
+             <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Register</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+       </div><!-- /.container-fluid -->
+    </nav>
+    <!-- END navigation -->
+    <!-- BEGIN jumbotron -->
+    <section class="jumbotron">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7 col-md-offset-5">
+            <div class="jumbotron-content">
+              <h1>Crisp and clean HTML5 with Bootstrap 3</h1>
+              <p class="lead">Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container pad-top-20">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="bluebox">
+            <h3>Learn...</h3>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <a href="#" class="readmore" >Read more</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="redbox">
+            <h3>Learn...</h3>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <a href="#" class="readmore">Read more</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="bluebox">
+            <h3>Learn...</h3>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <a href="#" class="readmore">Read more</a>
+          </div>
+        </div>
+      </div>
+      <div class="row pad-top-20">
+        <div class="col-md-8">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+               <h3 class="panel-title">What's happening in the world</h3>
+            </div>
+            <div class="panel-body">
+               <div class="media">
+                  <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="images/small1.jpg" alt="small image">
+                  </a>
+                  <div class="media-body">
+                    <h4 class="media-heading">Media is cool!</h4>
+                    <p>Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+                  </div>
+                </div>
+                <div class="media">
+                  <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="images/small2.jpg" alt="small2 image">
+                  </a>
+                  <div class="media-body">
+                    <h4 class="media-heading">Media is cool!</h4>
+                    <p>Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+                  </div>
+                </div>
+                <div class="media">
+                  <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="images/small3.jpg" alt="small2 image">
+                  </a>
+                  <div class="media-body">
+                    <h4 class="media-heading">Media is cool!</h4>
+                    <p>Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- sidebar content -->
+        <div class="col-md-4">
+          
+        </div>
+      </div>
+      <footer>
+      <div class="panel panel-default">
+        <div class="panel-body hello">
+          Copyright (c) 2014 Mili Wijeratne
+        </div>
+      </div>
+      
+    </footer>
+    </section>
+    
+
+
+  </body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype HTML>
+<html>
+
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<meta charset='utf-8' />
+		<meta name="viewport" content="width=device-width"/>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript">
+			//Toggle for width display
+
+			var showWidth = 1;
+
+			if (showWidth == 1) {
+				$(document).ready(function() {
+					$(window).resize (function () {
+						var width = $(window).width();
+						document.getElementById('output_width').innerHTML = "Window width is: " + width.toString();
+						// console.log('width: '+width.toString());
+					});
+ 				});
+			};
+
+		</script>
+		<title>Responsive luv</title>
+	</head>
+
+
+	<body>
+		<div id="output_width"></div>
+
+		<div id="container">
+			<header class="main-header">
+				<img id="logo" src="images/logo.png" alt="Retroporject"/>
+				<nav class="main-nav">
+					<ul>
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#">Learn</a></li>
+						<li><a href="#">Brainstorm</a></li>
+						<li><a href="#">Create</a></li>
+						<li><a href="#">Collaborate</a></li>
+						<li><a href="#">Teach</a></li>
+					</ul>
+				</nav>
+			</header>	
+				<div id="main">
+					<div id="content">
+						<article class="art1">
+							<header class="art-header">
+								<h2 class="title"><a href="">First Post</a></h2>
+								<span>Created by: Mili Wijeratne on 16 May, 2014</span>
+							</header>
+							<p>Sed posuere consectetur est at lobortis. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum.</p>
+							<a href="#" class="readmore">Read more</a>
+						</article>
+						<article class="art2">
+							<header class="art-header">
+								<h2 class="title"><a href="">Second Post</a></h2>
+								<span>Created by: Mili Wijeratne on 16 May, 2014</span>
+							</header>
+							<p>SDonec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+							<a href="#" class="readmore">Read more</a>
+						</article>
+					</div>
+					<aside id="sidebar">
+						<div class="block">
+							<h2>Top Sidebar</h2>
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac</p>
+						</div>
+						<div class="block">
+							<h2>Mid Sidebar</h2>
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac</p>
+						</div>
+
+						<div class="block">
+							<h2>Bottom Sidebar</h2>
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac</p>
+						</div>
+					</aside>
+				</div>
+				<div class="clearfix"></div>
+				<footer>
+					<p>Copyright 2014 Mili</p>
+				</footer>
+
+
+		</div>
+	</body>
+
+
+</html>
+
+
