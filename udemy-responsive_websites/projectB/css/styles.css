@@ -111,8 +111,17 @@ section.container {
 	color: #fff;
 }
 
+/*List group*/
 
+a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus {
+	background: #ca2129;
+	border: #ca2129;
+}
 
+.grey-list a.list-group-item.active, .grey-list a.list-group-item.active:hover, .grey-list a.list-group-item.active:focus {
+	background: #f4f4f4;
+	border: #333;
+}
 
 
 
