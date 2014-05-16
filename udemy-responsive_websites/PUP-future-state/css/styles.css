@@ -18,12 +18,20 @@ body {
 }
 .top-bar {
 	height: 5px;
-	background: #ca2129;
+	background: #006197;
 	margin-bottom: 1px;
 }
 
 .navbar {
 	margin-bottom: 1px;
+	background: #007BB6;
+	border-color: #006197;
+}
+
+.navbar-brand {
+	/*overflow: auto;*/
+	display: block;
+	margin-top: -10px;
 }
 
 .navbar li:hover {
@@ -37,9 +45,11 @@ li.login a {
 	padding-right: 22px;
 	padding-left: 22px;
 }
-
+.navbar-default .navbar-nav > li > a {
+	color: #fff;
+}
 .navbar-default .navbar-nav > li > a:hover {
-	background: #ccc;
+	/*background: #ccc;*/
 }
 
 li.register a {
