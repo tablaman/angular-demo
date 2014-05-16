@@ -9,6 +9,13 @@ section.container {
 .pad-top-20 { padding-top: 20px; }
 .pad-top-30 { padding-top: 30px; }
 
+.well {
+	background: #fff !important;
+}
+
+body {
+	margin-top: 50px;
+}
 .top-bar {
 	height: 5px;
 	background: #ca2129;
@@ -21,6 +28,26 @@ section.container {
 
 .navbar li:hover {
 	background: #e7e7e7;
+}
+
+li.login a {
+	background: #ca2129;
+	margin-bottom: -10px !important;
+	color: #fff !important;
+	padding-right: 22px;
+	padding-left: 22px;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+	background: #ccc;
+}
+
+li.register a {
+	background: #2f98cc;
+	margin-bottom: -10px !important;
+	color: #fff !important;
+	padding-right: 22px;
+	padding-left: 22px;
 }
 
 .jumbotron {
