@@ -10,7 +10,8 @@ section.container {
 .pad-top-30 { padding-top: 30px; }
 
 .well {
-	background: #fff !important;
+	background-color: #fff !important;
+
 }
 
 body {
@@ -77,6 +78,15 @@ li.register a {
 	padding-bottom: 10px;
 }
 
+#tooltip1 {
+	color: #fff;
+}
+
+#tooltip1:hover {
+	text-decoration: none;
+	background: #333;
+	
+}
 .bluebox {
 	background: #2e98cc;
 	height: 230px;
@@ -132,7 +142,6 @@ li.register a {
 }
 
 
-
 .panel-default > .hello {
 	background: #333;
 	color: #fff;
@@ -150,6 +159,9 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 	border: #333;
 }
 
+#blog img {
+	width: 100%;
+}
 
 
 
