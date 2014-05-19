@@ -4,6 +4,10 @@ section.container {
 	/*margin: 10px;*/
 }
 
+/* Header */
+input.form-control {
+	border-radius: 0;
+}
 
 .pad-top-10 { padding-top: 10px; }
 .pad-top-20 { padding-top: 20px; }
@@ -140,7 +144,6 @@ li.register a {
 	background: #2e98cc !important;
 	color: #fff;
 }
-
 
 
 .panel-default > .hello {
