@@ -12,6 +12,13 @@
 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready (function (){
+      $('#tooltip1').tooltip('hide');
+      $('#tooltip2').tooltip('hide');
+    })
+    </script>
   </head>
   <body>
     <!-- The navigation -->
@@ -99,6 +106,7 @@
         <div class="col-md-4">
           <div class="bluebox">
             <h3><span class="glyphicon glyphicon-road"></span> Learn...</h3>
+            <a href="#" id="tooltip2" data-toggle="tooltip" title="Some tooltip text!">Hover over me</a>
             <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
             <a href="#" class="readmore">Read more</a>
           </div>

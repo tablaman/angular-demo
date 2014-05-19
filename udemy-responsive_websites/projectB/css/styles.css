@@ -78,11 +78,13 @@ li.register a {
 	padding-bottom: 10px;
 }
 
-#tooltip1 {
+#tooltip1, #tooltip2 {
 	color: #fff;
+	border-bottom: dotted 1px #fff;
+	padding-bottom: 2px;
 }
 
-#tooltip1:hover {
+#tooltip1:hover, @tooltip2:hover {
 	text-decoration: none;
 	background: #333;
 	
