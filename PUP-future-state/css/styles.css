@@ -8,6 +8,26 @@ section.container {
 input.form-control {
 	border-radius: 0;
 }
+.glyphicon-plus {
+	
+	
+	/*top: 16px;
+	left: 7px;
+	position: absolute;
+	padding: 15px 7px 0 7px;
+	display: inline-block;*/
+	padding-right: 5px;
+	
+
+}
+
+.form-group > input.form-control {
+	width: 300px;
+}
+
+.btn-default {
+	border-radius: 0;
+}
 
 .pad-top-10 { padding-top: 10px; }
 .pad-top-20 { padding-top: 20px; }
