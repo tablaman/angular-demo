@@ -29,6 +29,16 @@ input.form-control {
 	border-radius: 0;
 }
 
+.img-circle {
+	padding-top: 5px;
+	width: 36px;
+	height: 36px;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	border: solid 2px #fff;
+}
+/*---------------------------*/
+
 .pad-top-10 { padding-top: 10px; }
 .pad-top-20 { padding-top: 20px; }
 .pad-top-30 { padding-top: 30px; }
