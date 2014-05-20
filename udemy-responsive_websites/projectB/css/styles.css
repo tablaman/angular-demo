@@ -43,6 +43,10 @@ li.login a {
 	background: #ccc;
 }
 
+.popover {
+	color: #333;
+	width: 200px;
+}
 li.register a {
 	background: #2f98cc;
 	margin-bottom: -10px !important;

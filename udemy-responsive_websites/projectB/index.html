@@ -17,6 +17,7 @@
     $(document).ready (function (){
       $('#tooltip1').tooltip('hide');
       $('#tooltip2').tooltip('hide');
+      $('#address').popover('hide')
     })
     </script>
   </head>
@@ -100,7 +101,8 @@
           <div class="redbox">
             <h3><span class="glyphicon glyphicon-eye-open"></span> Learn...</h3>
             <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <a href="#" class="readmore">Read more</a>
+            <!-- <a href="#" class="readmore">Read more</a> -->
+            <a id="address" href="#" class="btn btn-lg btn-primary" data-toggle="popover" title="Hi there this is awesome!" data-content="And here's some amazing content. It's very engaging. right?" role="button" data-original-title="A Title">Click to toggle popover</a>
           </div>
         </div>
         <div class="col-md-4">
