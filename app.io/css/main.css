@@ -1,0 +1,27 @@
+/*Main CSS
+----------------------*/
+
+header, section {
+	width: 100%;
+	margin: 0 auto;
+	display: block;
+	padding: 50px;
+}
+
+header {
+	position: absolute;
+	top: 0;
+}
+nav {
+	display: inline-block;
+
+}
+ul > li a {
+	text-decoration: none;
+	color: #fff;
+}
+
+section.hero {
+	background: #333;
+	height: 700px;
+}
