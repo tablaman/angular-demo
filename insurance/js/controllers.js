@@ -5,15 +5,28 @@ var insuranceCoAppControllers = angular.module('insuranceCoAppControllers',[]);
 
 
 // Watch out for minification issues! This is done inline
-insuranceCoAppControllers.controller('optionACtrl', ['$scope', '$http',
-    function($scope) {
+insuranceCoAppControllers.controller('optionACtrl', ['$scope', 'Details',
+    function($scope, Details) {
+    console.log('option A Ctrl ' +Details);
+
+    $scope.details = Details;
+
+
+
+
+}]);
+
+insuranceCoAppControllers.controller('optionBCtrl', ['$scope', 'Details',
+    function($scope, Details) {
+    console.log('option B Ctrl ' + Details.firstEntry);
+
+    $scope.details = Details;
 
 
     //Note you can do splice to limit to 5 phones:
     // $scope.phones = data.splice(0,5);
 
-    $scope.hello = "Hello World!";
-    $scope.orderProp = 'age';
+    //$scope.hello = $routeParams.hello;
 
 }]);
 
