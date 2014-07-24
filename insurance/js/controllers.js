@@ -15,7 +15,7 @@ insuranceCoAppControllers.controller('optionACtrl', ['$scope', 'Details',
 
 
 
-insuranceCoAppControllers.controller('optionBCtrl', ['$scope', 'Details',
+insuranceCoAppControllers.controller('optionBCtrl', ['$scope', 'DetailsOptionB',
     function($scope, Details) {
     console.log('option B Ctrl');
 
@@ -38,7 +38,7 @@ insuranceCoAppControllers.controller('optionASummaryCtrl', ['$scope', 'Details',
 
 }]);
 
-insuranceCoAppControllers.controller('optionBSummaryCtrl', ['$scope', 'Details',
+insuranceCoAppControllers.controller('optionBSummaryCtrl', ['$scope', 'DetailsOptionB',
     function($scope, Details) {
     console.log('option B SummaryCtrl');
 

@@ -7,4 +7,10 @@ insuranceCoApp.factory('Details', function () {
 	return details;
 })
 
+insuranceCoApp.factory('DetailsOptionB', function () {
+	var detailsOptionB = new Object();
+
+	return detailsOptionB;
+})
+
 
