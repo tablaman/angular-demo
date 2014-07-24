@@ -15,13 +15,13 @@
             <label for="exampleInputEmail1">Are you a smoker?</label>
             <div class="radio">
               <label>
-                <input type="radio" name="optionsRadios" id="male" value="yes" ng-model="details.smoker">
+                <input type="radio" name="smoker" id="male" value="true" ng-model="details.smoker">
                 Yes
               </label>
             </div>
             <div class="radio">
               <label>
-                <input type="radio" name="optionsRadios" id="female" value="no" ng-model="details.smoker">
+                <input type="radio" name="smoker" id="female" value="false" ng-model="details.smoker">
                 No
               </label>
             </div>
@@ -29,20 +29,20 @@
             <label for="exampleInputEmail1">Please input your gender</label>
             <div class="radio">
               <label>
-                <input type="radio" name="optionsRadios" id="male" value="male" ng-model="details.gender">
+                <input type="radio" name="gender" id="male" value="male" ng-model="details.gender">
                 Male
               </label>
             </div>
             <div class="radio">
               <label>
-                <input type="radio" name="optionsRadios" id="female" value="female" ng-model="details.gender">
+                <input type="radio" name="gender" id="female" value="female" ng-model="details.gender">
                 Female
               </label>
             </div>
           </div>
           
           
-          <a class="btn-standard" href="#/option-A-summary">Next &gt; </a>
+          <a class="btn-standard" href="#/option-B-summary">Next &gt; </a>
         </form>
     </div>
 </section>

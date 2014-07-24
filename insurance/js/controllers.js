@@ -7,12 +7,9 @@ var insuranceCoAppControllers = angular.module('insuranceCoAppControllers',[]);
 // Watch out for minification issues! This is done inline
 insuranceCoAppControllers.controller('optionACtrl', ['$scope', 'Details',
     function($scope, Details) {
-    console.log('option A Ctrl ' +Details);
+    console.log('option A Ctrl ' +Details); //trace Details object
 
     $scope.details = Details;
-
-
-
 
 }]);
 
@@ -20,16 +17,15 @@ insuranceCoAppControllers.controller('optionACtrl', ['$scope', 'Details',
 
 insuranceCoAppControllers.controller('optionBCtrl', ['$scope', 'Details',
     function($scope, Details) {
-    console.log('option B Ctrl ' + Details.firstEntry);
+    console.log('option B Ctrl');
 
     $scope.details = Details;
-
 
 }]);
 
 insuranceCoAppControllers.controller('optionASummaryCtrl', ['$scope', 'Details',
     function($scope, Details) {
-    console.log('optionASummaryCtrl ' + Details.firstEntry);
+    console.log('option A SummaryCtrl');
 
     $scope.details = Details;
     // $('#confirmationDialog').modal('hide');
@@ -40,8 +36,22 @@ insuranceCoAppControllers.controller('optionASummaryCtrl', ['$scope', 'Details',
         console.log('modal window!');
     }
 
-    
+}]);
 
-    
+insuranceCoAppControllers.controller('optionBSummaryCtrl', ['$scope', 'Details',
+    function($scope, Details) {
+    console.log('option B SummaryCtrl');
+
+    $scope.details = Details;
+    $scope.doesUserSmoke = function () {
+        var outputText;
+
+        console.log('SMOKE ');
+        if ($scope.details.smoker == "true") outputText = "smoke!";
+        else outputText = "do not smoke";
+
+        return outputText;
+    }
+
 
 }]);
