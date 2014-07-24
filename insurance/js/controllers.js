@@ -16,6 +16,8 @@ insuranceCoAppControllers.controller('optionACtrl', ['$scope', 'Details',
 
 }]);
 
+
+
 insuranceCoAppControllers.controller('optionBCtrl', ['$scope', 'Details',
     function($scope, Details) {
     console.log('option B Ctrl ' + Details.firstEntry);
@@ -23,34 +25,23 @@ insuranceCoAppControllers.controller('optionBCtrl', ['$scope', 'Details',
     $scope.details = Details;
 
 
-    //Note you can do splice to limit to 5 phones:
-    // $scope.phones = data.splice(0,5);
-
-    //$scope.hello = $routeParams.hello;
-
 }]);
 
-insuranceCoAppControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', '$http',
-    function($scope, $routeParams, $http) {
-//        $scope.phoneId = $routeParams.phoneId;
+insuranceCoAppControllers.controller('optionASummaryCtrl', ['$scope', 'Details',
+    function($scope, Details) {
+    console.log('optionASummaryCtrl ' + Details.firstEntry);
 
-        //fetch individual json objects for each phone from server
-        $http.get('phones/' + $routeParams.phoneId + '.json').success(function(data) {
-            $scope.phone = data;
-            $scope.mainImageUrl = data.images[1];
+    $scope.details = Details;
+    // $('#confirmationDialog').modal('hide');
 
-        });
+    $scope.showModal= function () {
+        // if I had more time, I would have created a modal window as a directive to be actioned on the page 
+        // to assert the user
+        console.log('modal window!');
+    }
 
+    
 
-        $scope.setImage = function (imageUrl) {
-            $scope.mainImageUrl = imageUrl;
+    
 
-
-        }
-        $scope.hello = function (sayname) {
-            alert('hey there ' + sayname);
-        }
-    }]);
-
-
-
+}]);

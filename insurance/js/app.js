@@ -18,6 +18,10 @@ insuranceCoApp.config (['$routeProvider',
                 templateUrl: 'partials/option-b.html',
                 controller: 'optionBCtrl'
             }).
+            when('/option-A-summary', {
+                templateUrl: 'partials/option-A-summary.html',
+                controller: 'optionASummaryCtrl'
+            }).
             otherwise ({
                 redirectTo: '/'
         });

@@ -4,80 +4,103 @@ body {
     padding-top: 20px;
 }
 
-.showHand {
-    cursor: hand;
-}
-.phones {
-    list-style: none;
-    margin-top: 180px;
-}
 
-.thumb {
-    float: left;
-    margin: -1em 1em 1.5em 0em;
-    padding-bottom: 1em;
-    height: 100px;
-    width: 100px;
-}
 
-.phones li {
-    clear: both;
-    height: 100px;
-    padding-top: 15px;
-}
-
-/** Detail View **/
-img.phone {
-    float: left;
-    border: 1px solid black;
-    margin-right: 3em;
-    margin-bottom: 2em;
-    background-color: white;
-    padding: 2em;
-    height: 400px;
+#wrapper {
+    display: block;
     width: 400px;
+    margin: 0 auto;
+    /*margin-top: 200px;*/
+    margin-bottom: 3%;
+
+    -o-transition:.2s;
+    -ms-transition:.2s;
+    -moz-transition:.2s;
+    -webkit-transition:.2s;
+    /* ...and now for the proper property */
+    transition:.2s;
 }
 
-ul.phone-thumbs {
+#wrapper h1 {
+    background: #4A90E2;
+    padding: 18px;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: center;
+    color: #fff;
     margin: 0;
-    list-style: none;
+
 }
 
-ul.phone-thumbs li {
-    border: 1px solid black;
+form {
+    padding: 5% 5% 2% 5%;
+    background: #f0f0f0;
+
+}
+
+input {
+    display: block;
+    padding: 2%;
+    font-size: 14px;
+    /*margin: 5px auto;*/
+}
+input:hover {
+    border: 1px solid #333;
+}
+input[type="email"], input[type="password"] {
+    width: 95%;
+    height: 30px;
+    border: 1px solid #C0DEED;
+    font-weight: 300;
+}
+
+input[type="checkbox"] {
     display: inline-block;
-    margin: 1em;
-    background-color: white;
+    margin-right: 5px;
 }
 
-ul.phone-thumbs img {
-    height: 100px;
-    width: 100px;
-    padding: 1em;
+.call-to-action {
+    text-align: center;
 }
 
-ul.specs {
-    clear: both;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-ul.specs > li{
+.btn-standard {
     display: inline-block;
-    width: 200px;
-    vertical-align: top;
+    padding: 10px;
+    border: 1px solid #C0DEED;
+    background-color: #fefefe;
+    text-decoration: none;
+    cursor: pointer;
+    color: #333;
+    width: 90px;
+
+    -o-transition:.2s;
+    -ms-transition:.2s;
+    -moz-transition:.2s;
+    -webkit-transition:.2s;
+    /* ...and now for the proper property */
+    transition:.2s;
+    text-align: center;
+}
+.btn-standard + .action {
+    background-color: #dff0d8;
+    color: #333;
+}
+.btn-standard:hover {
+    background: #4A90E2;
+    color: #fefefe;
+    text-decoration: none;
+}
+.action:hover {
+    background-color: #9FB775;
+    color: #fff;
 }
 
-ul.specs > li > span{
-    font-weight: bold;
-    font-size: 1.2em;
-}
 
-ul.specs dt {
-    font-weight: bold;
-}
 
-h1 {
-    border-bottom: 1px solid gray;
-}
+
+
+
+
+
+
+

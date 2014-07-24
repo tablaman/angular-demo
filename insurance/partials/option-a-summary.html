@@ -1,0 +1,22 @@
+<!-- BEGIN wrapper -->
+<section class="entryForm">
+     <div id="wrapper">
+        <h1>Option A Summary</h1>
+        <form role="form">
+            <label>You are a {{details.gender}}</label><br>
+            
+            <label>Your date of birth is {{details.dob}}</label><br>
+            <label>Desired Cover Amount is {{details.desiredCoverAmount}}</label>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-change="orderConfirm()"> By selecting this, you are confirming that you're happy with the amount shown and wish to proceed with the purchase.
+            </label>
+          </div>
+          <div class="call-to-action">
+            <a class="btn-standard" href="#/option-A">&lt; Back </a>
+            <a class="btn-standard action" href="" ng-click="showModal()">Purchase </a>
+          </div>
+        </form>
+    </div>
+</section>
+<!-- END wrapper -->
