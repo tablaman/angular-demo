@@ -1,0 +1,89 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'grunt-congrib-uglify',
+1 verbose cli   '--save-dev' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.32
+4 warn package.json grunt-livereload-renewed@1.0.0 No description
+5 warn package.json grunt-livereload-renewed@1.0.0 No repository field.
+6 warn package.json grunt-livereload-renewed@1.0.0 No README data
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'grunt-congrib-uglify', null ]
+9 verbose cache add name=undefined spec="grunt-congrib-uglify" args=["grunt-congrib-uglify",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'grunt-congrib-uglify',
+10 verbose parsed url   path: 'grunt-congrib-uglify',
+10 verbose parsed url   href: 'grunt-congrib-uglify' }
+11 silly lockFile 024741a0-grunt-congrib-uglify grunt-congrib-uglify
+12 verbose lock grunt-congrib-uglify /Users/miliwijeratne/.npm/024741a0-grunt-congrib-uglify.lock
+13 silly lockFile 024741a0-grunt-congrib-uglify grunt-congrib-uglify
+14 silly lockFile 024741a0-grunt-congrib-uglify grunt-congrib-uglify
+15 verbose addNamed [ 'grunt-congrib-uglify', '' ]
+16 verbose addNamed [ null, '*' ]
+17 silly lockFile 9046c774-grunt-congrib-uglify grunt-congrib-uglify@
+18 verbose lock grunt-congrib-uglify@ /Users/miliwijeratne/.npm/9046c774-grunt-congrib-uglify.lock
+19 silly addNameRange { name: 'grunt-congrib-uglify', range: '*', hasData: false }
+20 verbose request where is /grunt-congrib-uglify
+21 verbose request registry https://registry.npmjs.org/
+22 verbose request id 73cf3d97db0f700b
+23 verbose url raw /grunt-congrib-uglify
+24 verbose url resolving [ 'https://registry.npmjs.org/', './grunt-congrib-uglify' ]
+25 verbose url resolved https://registry.npmjs.org/grunt-congrib-uglify
+26 verbose request where is https://registry.npmjs.org/grunt-congrib-uglify
+27 info trying registry request attempt 1 at 08:13:46
+28 http GET https://registry.npmjs.org/grunt-congrib-uglify
+29 http 404 https://registry.npmjs.org/grunt-congrib-uglify
+30 verbose headers { date: 'Mon, 19 Jan 2015 21:13:46 GMT',
+30 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+30 verbose headers   'content-type': 'application/json',
+30 verbose headers   'cache-control': 'max-age=0',
+30 verbose headers   'content-length': '52',
+30 verbose headers   'accept-ranges': 'bytes',
+30 verbose headers   via: '1.1 varnish',
+30 verbose headers   'x-served-by': 'cache-syd1621-SYD',
+30 verbose headers   'x-cache': 'MISS',
+30 verbose headers   'x-cache-hits': '0',
+30 verbose headers   'x-timer': 'S1421702026.205150,VS0,VE754',
+30 verbose headers   'keep-alive': 'timeout=10, max=50',
+30 verbose headers   connection: 'Keep-Alive' }
+31 silly registry.get cb [ 404,
+31 silly registry.get   { date: 'Mon, 19 Jan 2015 21:13:46 GMT',
+31 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+31 silly registry.get     'content-type': 'application/json',
+31 silly registry.get     'cache-control': 'max-age=0',
+31 silly registry.get     'content-length': '52',
+31 silly registry.get     'accept-ranges': 'bytes',
+31 silly registry.get     via: '1.1 varnish',
+31 silly registry.get     'x-served-by': 'cache-syd1621-SYD',
+31 silly registry.get     'x-cache': 'MISS',
+31 silly registry.get     'x-cache-hits': '0',
+31 silly registry.get     'x-timer': 'S1421702026.205150,VS0,VE754',
+31 silly registry.get     'keep-alive': 'timeout=10, max=50',
+31 silly registry.get     connection: 'Keep-Alive' } ]
+32 silly lockFile 9046c774-grunt-congrib-uglify grunt-congrib-uglify@
+33 silly lockFile 9046c774-grunt-congrib-uglify grunt-congrib-uglify@
+34 error 404 404 Not Found: grunt-congrib-uglify
+34 error 404
+34 error 404 'grunt-congrib-uglify' is not in the npm registry.
+34 error 404 You should bug the author to publish it
+34 error 404 It was specified as a dependency of 'grunt-livereload-renewed'
+34 error 404
+34 error 404 Note that you can also install from a
+34 error 404 tarball, folder, or http url, or git url.
+35 error System Darwin 13.4.0
+36 error command "node" "/usr/local/bin/npm" "install" "grunt-congrib-uglify" "--save-dev"
+37 error cwd /Users/miliwijeratne/Sites/Artfox/website-lander
+38 error node -v v0.10.32
+39 error npm -v 1.4.28
+40 error code E404
+41 verbose exit [ 1, true ]

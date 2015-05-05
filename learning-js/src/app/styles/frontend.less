@@ -1,0 +1,396 @@
+@import 'base.less';
+
+// NEW STUFF
+.wwdc-badge {
+    width: 150px;
+    height: 230px;
+    display: block;
+    margin: 25px auto 30px;
+    padding-top: 120px;
+    border-radius: 7px;
+    background-image: -webkit-linear-gradient(top, #f5c242 0%, #e13497 100%);
+    background-image: linear-gradient(to bottom, #f5c242 0%, #e13497 100%);
+    color: #fff;
+    font-size: 60px;
+    text-align: center;
+}
+
+.wwdc {
+    h2 {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.intro {
+    font-family: "OpenSans-Light", sans-serif;
+
+    font-size: 2.1rem;
+}
+
+.divider-top {
+    border-top: 1px solid #E6E6E6;
+}
+
+//General --------------------------------
+html {
+    -webkit-font-smoothing: antialiased;
+    font-family: "OpenSans", sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: "OpenSans", sans-serif;
+}
+
+section {
+    h3, h4 {
+        font-family: "OpenSans-Semibold", sans-serif;
+        text-transform: uppercase;
+        display: block;
+    }
+    h2 {
+        font-family: "OpenSans-Light", sans-serif;
+        font-size: 28px;
+        line-height: 1.3em;
+        // font-weight: 300;
+    }
+    h3 {
+        font-size: 12px;
+    }
+    h4 {
+        font-size: 11px;
+    }
+}
+
+footer {
+    padding: 30px 0;
+    background-color: #2D2D2D;
+    color: @text-white;
+    p {
+        font-size: 10px;
+    }
+}
+
+.logos {
+    //do we need this?
+}
+
+// Logo & Blurbs
+.navbar-brand {
+    margin-top: -7px;
+    .logo {
+        // .smooth-transition(0.1s);
+    }
+    .logo-shrink {
+        margin-top: 3px;
+        max-width: 45px;
+        height: auto;
+    }
+}
+
+.logo-client {
+    width: 128px;
+    // padding: 36px 100px 0 80px;
+}
+
+.icons {
+    font-size: 42px;
+}
+
+.blurb {
+    margin: 0 5px 10px 5px;
+    i {
+        color: #777;
+        border: 2px solid @gray-light;
+        border-radius: 50%;
+        padding: 38px;
+        .smooth-transition();
+    }
+}
+
+.highlight:hover {
+    padding-bottom: 50px;
+    background-color: #333;
+    .smooth-transition();
+}
+
+.spacer-20 {
+    margin-bottom: 20px;
+}
+
+.btn-xl {
+    padding: 18px 36px !important;
+    border-color: @artfox-red;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px !important;
+    font-weight: 700;
+    color: #fff;
+    background-color: @artfox-red;
+    box-shadow: 0 -3px 0 rgba(0, 0, 0, .2) inset;
+    .smooth-transition();
+    &:hover {
+        background-color: @artfox-red-dark;
+        color: @text-white;
+    }
+}
+
+// navbar
+// SECTIONS --------------------------------
+#what-we-do,
+#our-awesome-clients,
+#contact {
+    padding-top: @section-padding;
+}
+
+#our-awesome-clients {
+    background-color: #F7F3EB;
+}
+
+#about {
+    padding-top: @section-padding;
+    background-color: @artfox-red;
+    color: @text-white;
+    p {
+        .section-body();
+    }
+}
+
+ul.logos-group {
+    list-style-type: none;
+    margin-left: -30px;
+    li {
+        display: inline-block;
+        margin: 20px 50px;
+    }
+}
+
+#logo-gov-wa,
+#logo-csiro,
+#logo-murdoch {
+    background-image: url('/assets/images/clients.png');
+    background-repeat: none;
+    float: none;
+    margin: 0 auto;
+}
+
+#logo-gov-wa {
+    background-position: 0 2px;
+    height: 103px;
+    width: 100px;
+}
+
+#logo-csiro {
+    background-position: -129px;
+    // margin-left: 16px;
+    height: 96px;
+    width: 80px;
+}
+
+#logo-murdoch {
+    background-position: -238px;
+    width: 121px;
+    height: 98px;
+}
+
+// Contact
+section#contact {
+    background-color: @gray-darker;
+    h4, p {
+        color: @text-white;
+    }
+    p {
+        .section-body();
+    }
+    #contactForm {
+        margin-top: 45px;
+    }
+    .text-danger {
+        color: #e74c3c;
+    }
+    .form-control {
+        border-radius: 0;
+    }
+    .form-control:focus {
+        border-color: #fed136;
+        box-shadow: none;
+    }
+    .form-group {
+        // padding: 5px;
+        // margin-bottom: 5px;
+        input, textarea {
+            padding: 20px;
+        }
+        input {
+            height: auto;
+        }
+        textarea {
+            height: 236px;
+        }
+    }
+    ::-webkit-input-placeholder {
+        text-transform: uppercase;
+        font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        color: #bbb;
+    }
+    :-moz-placeholder {
+        text-transform: uppercase;
+        font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        color: #bbb;
+    }
+    ::-moz-placeholder {
+        text-transform: uppercase;
+        font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        color: #bbb;
+    }
+    :-ms-input-placeholder {
+        text-transform: uppercase;
+        font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        color: #bbb;
+    }
+}
+
+section {
+    padding: 100px 0;
+}
+
+header {
+    height: 360px;
+    color: #fff;
+    .texture-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/assets/images/grid.png');
+    }
+    section#hero {
+        background-attachment: scroll;
+        background-image: url('/assets/images/hero-03-artfox.png');
+        background-position: 50% 0 fixed;
+        background-repeat: none;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+        width: 100%;
+        height: auto;
+    }
+    .intro-text {
+        margin-top: 10px;
+        margin-left: 50px;
+        padding: 30px;
+        font-size: 2.0em;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 1.1em;
+        font-size: 1.8em;
+        .smooth-transition();
+    }
+    .container {
+        // width: 100%;
+        padding: 100px 1px 20px 0;
+        margin-right: 15px;
+    }
+}
+
+//------
+// Media Queries
+// Media
+/* Small devices (tablets, 768px and up) */
+
+@media (min-width: @screen-sm-min) {
+    .navbar-fixed-top {
+        padding: 25px 0;
+        .smooth-transition-including-type(padding, 0.5s);
+        .navbar-brand {
+            margin-top: -24px;
+            font-size: 2em;
+            .smooth-transition();
+        }
+    }
+    .navbar-default.navbar-shrink {
+        padding: 10px 0;
+    }
+    .blurb {
+        i {
+            border: 2px solid #fff;
+        }
+        &:hover i {
+            border: 2px solid #333;
+            color: #333;
+            transition: 0.5s;
+        }
+    }
+    header {
+        height: 500px !important;
+        .intro-text {
+            margin-top: 100px !important;
+            margin-left: 10px !important;
+            padding: 30px !important;
+            font-size: 2.1em !important;
+        }
+        section#hero {
+            background-position: 50% 0 fixed;
+            background-repeat: none;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            -o-background-size: cover;
+            width: 100%;
+            height: auto;
+        }
+    }
+}
+
+.navbar {
+    text-transform: uppercase;
+    font-weight: 500;
+    //    a:focus {
+    //      outline: 0;
+    //    }
+    //    .navbar-nav {
+    //          letter-spacing: 1px;
+    //          li a:focus {
+    //      outline: 0;
+    //  }
+    // }
+}
+
+.navbar-default,
+.navbar-inverse {
+    border: 0;
+}
+
+.navbar-default {
+    .navbar-nav {
+        > li {
+            font-family: "OpenSans-Semibold", sans-serif;
+        }
+        > .active {
+            > a {
+                color: #fff;
+                background-color: #333;
+                &:hover, &:focus {
+                    color: #fff;
+                    background-color: #333;
+                }
+            }
+        }
+    }
+}
+/* Medium devices (desktops, 992px and up) */
+
+// @media (min-width: @screen-md-min) {}
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+    header {
+        height: 410px !important;
+    }
+}
