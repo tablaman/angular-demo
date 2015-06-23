@@ -43,6 +43,7 @@ module.exports = function(grunt) {
                 src: [
                     '<%= bowerDir %>/jquery/dist/jquery.js',
                     '<%= bowerDir %>/bootstrap/dist/js/bootstrap.js',
+                    '<%= bowerDir %>/underscore/underscore.js',
                     '<%= appDir %>/js/jquery.easing.1.3.js',
                     // '<%= bowerDir %>/jqBootstrapValidation/dist/jqBootstrapValidation-1.3.7.js',
                     '<%= bowerDir %>/classie/classie.js',
