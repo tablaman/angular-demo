@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app>
+
+<head>
+    <link rel="stylesheet" href="assets/css/frontend.css">
+    <title>Angular JS Hello</title>
+</head>
+
+<body ng-init="people = [{name: 'mark', address: '12 Michigan street, mitchigan'} , {name: 'sam', address: '12 sdfs street, mitchigan'}, {name: 'durian', address: '12 Kakki street, Kakkiville'}]">
+    <!-- MAIN -->
+    <section class="container">
+        <h1>Iterating over Data</h1>
+    </section>
+    <section ng-cloak class="container">
+        <ul>
+            <li ng-repeat="person in people">{{ person.name }} {{ person.address }}</li>
+        </ul>
+        <br>
+        <br>
+        <br>
+        <table>
+        <tbody>Details</tbody>
+        <tr>
+            <td>Name</td>
+            <td>Address</td>
+        </tr>
+            <tr ng-repeat="person in people | orderBy: 'name'">
+                <td>{{person.name}}</td>
+                <td>{{person.address}}</td>
+            </tr>
+        </table>
+    </section>
+    <!-- FrontEnd js includes jQuery and Bootstrap Core JavaScript-->
+    <script type="text/javascript" src="assets/js/frontend.js"></script>
+</body>
+
+</html>

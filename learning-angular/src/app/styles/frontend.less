@@ -1,0 +1,22 @@
+@import 'base.less';
+// ng-cloak
+// need this here since angular.js loads at the bottom of the html file. 
+// therefore {{ }} will show up beforehand, not ideal!
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+    display: none !important;
+}
+
+
+table {
+    width: 100%;
+}
+th {
+    background-color: @gray-medium;
+    color: @text-white;
+}

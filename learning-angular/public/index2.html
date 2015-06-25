@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app>
+
+<head>
+    <link rel="stylesheet" href="assets/css/frontend.css">
+    <title>Angular JS Hello</title>
+</head>
+
+<body ng-init="data={name:'James', isVisible:true, loggedIn:false, status: 'label-warning'}">
+    <!-- NAVIGATION -->
+    <section class="container">
+        <h1>Angular</h1>
+    </section>
+    <section id="logindiv" class="container">
+        <div ng-cloak ng-switch on="data.loggedIn">
+            <br>
+            <h2 ng-switch-when="true">Welcome {{ data.name }}</h2>
+            <p ng-switch-default ng-class="data.status" >Log me in</p>
+            <br>
+        </div>
+        Hide:
+        <div ng-show="data.isVisible">
+            Name:
+            <input type="text" ng-model="data.name" /> {{ data.name }}
+        </div>
+    </section>
+    <!-- End Get In Touch -->
+    <!-- FOOTER -->
+    <!-- FrontEnd js includes jQuery and Bootstrap Core JavaScript-->
+    <script type="text/javascript" src="assets/js/frontend.js"></script>
+    <!-- Plugin JavaScript -->
+</body>
+
+</html>

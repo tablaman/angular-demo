@@ -1,0 +1,29 @@
+// Mixins 
+// @author: Mili Wijeratne
+.smooth-transition(@duration: .3s) {
+    -moz-transition: @duration;
+    -webkit-transition: @duration;
+    -moz-transition: @duration;
+    -o-transition: @duration;
+    transition: @duration;
+}
+.smooth-transition-including-type(@type: "all", @duration: .3s) {
+    -moz-transition: @type @duration;
+    -webkit-transition: @type @duration;
+    -moz-transition: @type @duration;
+    -o-transition: @type @duration;
+    transition: @type @duration;
+}
+.section-body() {
+    font-family: "OpenSans-Light", sans-serif;
+    font-size: 16px;
+    line-height: 1.6em;
+}
+
+// Animations
+.appear-on-stage(@name, @duration: 3s) {
+    -webkit-animation: @name 3s;
+    moz-animation: @name 3s;
+    o-animation: @name 3s;
+    animation: @name 3s;
+}
