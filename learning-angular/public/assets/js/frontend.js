@@ -13626,7 +13626,7 @@ angular.module('customersApp').value('appSettings', {
 
 (function() {
 
-    var CustomersController = function($scope, customersService, appSettings) {
+    var CustomersController = function($scope, customersFactory, appSettings) {
         // Defaults
         $scope.sortBy = 'name';
         $scope.reverse = false;
@@ -13634,8 +13634,17 @@ angular.module('customersApp').value('appSettings', {
         $scope.appSettings = appSettings;
 
         function init () {
-            $scope.customers = customersService.getCustomers();
-            // console.log($scope.customers);
+            // synchronous call
+            // $scope.customers = customersFactory.getCustomers();
+            
+            //Async call with promise
+            customersFactory.getCustomers()
+                .success(function(customers) {
+                    $scope.customers = customers;
+                })
+                .error(function(data, status, headers, config){
+                    // handle error
+                });
         }
 
         init();
@@ -13646,7 +13655,7 @@ angular.module('customersApp').value('appSettings', {
         };
 
     }
-    CustomersController.$inject = ['$scope', 'customersService', 'appSettings'];
+    CustomersController.$inject = ['$scope', 'customersFactory', 'appSettings'];
     angular.module('customersApp')
         .controller('CustomersController', CustomersController);
 }());
@@ -13705,7 +13714,15 @@ function customersCtrl () {
         // private internal function for searching
         function init () {
             // Search the customers for the customerId and obtain the order(s) relevant to that id
-            $scope.customer = customersFactory.getCustomer(customerId);
+            // $scope.customer = customersFactory.getCustomer(customerId);
+
+            customersFactory.getCustomer(customerId)
+                .success(function(customer) {
+                    $scope.customer = customer;
+                })
+                .error(function(data, status, headers, config){
+                    // handle error
+                });
         }
 
         init();
@@ -13722,85 +13739,116 @@ function customersCtrl () {
 }());
 ;(function() {
 
-    var customersFactory = function() {
+    var customersFactory = function($http) {
 
-        var customers = [{
-            id: 1,
-            joined: '2012-12-1',
-            name: 'mark',
-            city: 'Kansas',
-            orderTotal: 19.111,
-            orders: [{
-                id: 1,
-                product: 'Shoes',
-                total: 95.99556
-            }, {
-                id: 3,
-                product: 'Aweosme kakki',
-                total: 7.99556
-            }]
-        }, {
-            id: 2,
-            joined: '2012-12-1',
-            name: 'John',
-            city: 'Kansas',
-            orderTotal: 11.111,
-            orders: [{
-                id: 3,
-                product: 'Boots',
-                total: 8.99556
-            }]
-        }, {
-            id: 3,
-            joined: '2012-12-1',
-            name: 'Shuushaaann',
-            city: 'Kansas',
-            orderTotal: 29.111,
-            orders: [{
-                id: 12,
-                product: 'Shoes23',
-                total: 5.99556
-            }]
-        }, {
-            id: 4,
-            joined: '2012-12-1',
-            name: 'Bronty',
-            city: 'Kansas',
-            orderTotal: 59.99911,
-            orders: [{
-                id: 2,
-                product: 'Shoes211',
-                total: 6.99556
-            }, {
-                id: 3,
-                product: 'toy train kakki',
-                total: 7.99556
-            }]
-        }];
+
         // define factory object literal
         var factory = {};
 
         factory.getCustomers = function() {
-            return customers;
+            return $http.get('http://localhost:8080/customers');
         };
 
         factory.getCustomer = function(customerId) {
-            for (var i = 0; i < customers.length; i++) {
-                if (customers[i].id === parseInt(customerId)) {
-                    return customers[i];
-
-                }
-            }
-            return {};
+            return $http.get('http://localhost:8080/customers/' + customerId);
         }
 
         return factory;
     }
 
+    customersFactory.$inject = ['$http'];
     angular.module('customersApp')
         .factory('customersFactory', customersFactory);
 
 }());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// for easy testing, include the following inside function.
+        // var customers = [{
+        //     id: 1,
+        //     joined: '2012-12-1',
+        //     name: 'mark',
+        //     city: 'Kansas',
+        //     orderTotal: 19.111,
+        //     orders: [{
+        //         id: 1,
+        //         product: 'Shoes',
+        //         total: 95.99556
+        //     }, {
+        //         id: 3,
+        //         product: 'Aweosme kakki',
+        //         total: 7.99556
+        //     }]
+        // }, {
+        //     id: 2,
+        //     joined: '2012-12-1',
+        //     name: 'John',
+        //     city: 'Kansas',
+        //     orderTotal: 11.111,
+        //     orders: [{
+        //         id: 3,
+        //         product: 'Boots',
+        //         total: 8.99556
+        //     }]
+        // }, {
+        //     id: 3,
+        //     joined: '2012-12-1',
+        //     name: 'Shuushaaann',
+        //     city: 'Kansas',
+        //     orderTotal: 29.111,
+        //     orders: [{
+        //         id: 12,
+        //         product: 'Shoes23',
+        //         total: 5.99556
+        //     }]
+        // }, {
+        //     id: 4,
+        //     joined: '2012-12-1',
+        //     name: 'Bronty',
+        //     city: 'Kansas',
+        //     orderTotal: 59.99911,
+        //     orders: [{
+        //         id: 2,
+        //         product: 'Shoes211',
+        //         total: 6.99556
+        //     }, {
+        //         id: 3,
+        //         product: 'toy train kakki',
+        //         total: 7.99556
+        //     }]
+        // }];
+
+
+        // factory.getCustomers = function() {
+        //     return customers;
+        // };
+
+        // factory.getCustomer = function(customerId) {
+        //     for (var i = 0; i < customers.length; i++) {
+        //         if (customers[i].id === parseInt(customerId)) {
+        //             return customers[i];
+
+        //         }
+        //     }
+        //     return {};
+        // }
+
+        // return factory;
 ;(function() {
 
     var customersService = function() {
