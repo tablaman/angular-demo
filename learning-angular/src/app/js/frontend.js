@@ -85,14 +85,21 @@ Method:
 - can be injected into controllers or other factories.
 - can hae their own dependencies.
 
+Other types (other than factory / service):
+- Constant
+- Value
+- Provier (outside of scope of the course)
+
+MAIN DIFFERENCE BETWEEN FACTORY AND SERVICE
+- Factory returns a custom object whereas the service IS the service - requires 'this'
+
 Exmaples: - these are some of the main ones
 $timeout $window, $location, $q - asynch processors
 $rootScope, $interval, $filter - for custom filters
 $log - general logging purposes.
 
 
-
-    */
+*******************************************************/
 
 // Option 1 - define in global scope 
 // var app = angular.module ('customersApp', []);

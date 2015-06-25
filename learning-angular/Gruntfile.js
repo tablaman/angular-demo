@@ -52,11 +52,14 @@ module.exports = function(grunt) {
                     // '<%= bowerDir %>/wow/dist/wow.js',
                     // Angular Controllers
                     '<%= appDir %>/js/frontend.js',
-                    
+                    '<%= appDir %>/services/values.js',
                     '<%= appDir %>/controllers/customersController.js',
                     '<%= appDir %>/controllers/customersControllerWithAs.js',
                     '<%= appDir %>/controllers/ordersController.js',
-                    '<%= appDir %>/services/customersFactory.js'
+                    '<%= appDir %>/services/customersFactory.js',
+                    '<%= appDir %>/services/customersService.js'
+
+
                     
 
                 ],

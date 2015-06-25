@@ -1,5 +1,7 @@
  <section class="container">
-        <h1>Iterating over Data - Customers</h1> Filter:
+        <h1> {{ appSettings.title }} | {{ appSettings.version }} </h1> 
+        <!-- <h1> test</h1>  -->
+        Filter:
         <input type="text" placeholder="details" ng-model="customerFilter.name">
     </section>
     <section ng-cloak class="container" ng-controller="CustomersController">

@@ -51,7 +51,7 @@
                 total: 6.99556
             }, {
                 id: 3,
-                product: 'Aweosme kakki',
+                product: 'toy train kakki',
                 total: 7.99556
             }]
         }];

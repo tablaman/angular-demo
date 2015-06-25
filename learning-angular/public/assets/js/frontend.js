@@ -13465,14 +13465,21 @@ Method:
 - can be injected into controllers or other factories.
 - can hae their own dependencies.
 
+Other types (other than factory / service):
+- Constant
+- Value
+- Provier (outside of scope of the course)
+
+MAIN DIFFERENCE BETWEEN FACTORY AND SERVICE
+- Factory returns a custom object whereas the service IS the service - requires 'this'
+
 Exmaples: - these are some of the main ones
 $timeout $window, $location, $q - asynch processors
 $rootScope, $interval, $filter - for custom filters
 $log - general logging purposes.
 
 
-
-    */
+*******************************************************/
 
 // Option 1 - define in global scope 
 // var app = angular.module ('customersApp', []);
@@ -13514,7 +13521,19 @@ function sth2() {
 
 
 
-;// CustomersController.js
+;// Values
+// These will not be available in config
+angular.module('customersApp').value('appSettings', {
+	title: 'Customers Application',
+	version: '1.9'
+});
+
+// Constants
+// These CAN be injected into config
+// angular.module('customersApp').value('appSettings', {
+// 	title: 'Customers Application',
+// 	version: '1.9'
+// });// CustomersController.js
 // Author: Mili Wijeratne
 
 // Option 1
@@ -13607,14 +13626,15 @@ function sth2() {
 
 (function() {
 
-    var CustomersController = function($scope, customersFactory) {
+    var CustomersController = function($scope, customersService, appSettings) {
         // Defaults
         $scope.sortBy = 'name';
         $scope.reverse = false;
         $scope.customers = [];
+        $scope.appSettings = appSettings;
 
         function init () {
-            $scope.customers = customersFactory.getCustomers();
+            $scope.customers = customersService.getCustomers();
             // console.log($scope.customers);
         }
 
@@ -13626,7 +13646,7 @@ function sth2() {
         };
 
     }
-    CustomersController.$inject = ['$scope', 'customersFactory'];
+    CustomersController.$inject = ['$scope', 'customersService', 'appSettings'];
     angular.module('customersApp')
         .controller('CustomersController', CustomersController);
 }());
@@ -13680,12 +13700,12 @@ function customersCtrl () {
         $scope.customer = null;
 
         // log
-        console.info('OrdersController loaded');
+        // console.info('OrdersController loaded');
+
         // private internal function for searching
         function init () {
             // Search the customers for the customerId and obtain the order(s) relevant to that id
             $scope.customer = customersFactory.getCustomer(customerId);
-            console.log(customerId);
         }
 
         init();
@@ -13753,7 +13773,7 @@ function customersCtrl () {
                 total: 6.99556
             }, {
                 id: 3,
-                product: 'Aweosme kakki',
+                product: 'toy train kakki',
                 total: 7.99556
             }]
         }];
@@ -13779,5 +13799,84 @@ function customersCtrl () {
 
     angular.module('customersApp')
         .factory('customersFactory', customersFactory);
+
+}());
+;(function() {
+
+    var customersService = function() {
+
+        var customers = [{
+            id: 1,
+            joined: '2012-12-1',
+            name: 'mark',
+            city: 'Kansas',
+            orderTotal: 19.111,
+            orders: [{
+                id: 1,
+                product: 'Shoes',
+                total: 95.99556
+            }, {
+                id: 3,
+                product: 'Aweosme kakki',
+                total: 7.99556
+            }]
+        }, {
+            id: 2,
+            joined: '2012-12-1',
+            name: 'John',
+            city: 'Kansas',
+            orderTotal: 11.111,
+            orders: [{
+                id: 3,
+                product: 'Boots',
+                total: 8.99556
+            }]
+        }, {
+            id: 3,
+            joined: '2012-12-1',
+            name: 'Shuushaaann',
+            city: 'Kansas',
+            orderTotal: 29.111,
+            orders: [{
+                id: 12,
+                product: 'Shoes23',
+                total: 5.99556
+            }]
+        }, {
+            id: 4,
+            joined: '2012-12-1',
+            name: 'Bronty',
+            city: 'Kansas',
+            orderTotal: 59.99911,
+            orders: [{
+                id: 2,
+                product: 'Shoes211',
+                total: 6.99556
+            }, {
+                id: 3,
+                product: 'toy train kakki',
+                total: 7.99556
+            }]
+        }];
+
+
+        this.getCustomers = function() {
+            return customers;
+        };
+
+        this.getCustomer = function(customerId) {
+            for (var i = 0; i < customers.length; i++) {
+                if (customers[i].id === parseInt(customerId)) {
+                    return customers[i];
+
+                }
+            }
+            return {};
+        }
+
+    }
+
+    angular.module('customersApp')
+        .service('customersService', customersService);
 
 }());

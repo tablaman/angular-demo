@@ -8,12 +8,12 @@
         $scope.customer = null;
 
         // log
-        console.info('OrdersController loaded');
+        // console.info('OrdersController loaded');
+
         // private internal function for searching
         function init () {
             // Search the customers for the customerId and obtain the order(s) relevant to that id
             $scope.customer = customersFactory.getCustomer(customerId);
-            console.log(customerId);
         }
 
         init();
