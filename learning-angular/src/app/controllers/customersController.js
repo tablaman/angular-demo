@@ -99,6 +99,9 @@
         $scope.appSettings = appSettings;
 
         function init () {
+
+            // log
+            console.info('from customersController.js');
             // synchronous call
             // $scope.customers = customersFactory.getCustomers();
             

@@ -15,6 +15,8 @@
             // Search the customers for the customerId and obtain the order(s) relevant to that id
             // $scope.customer = customersFactory.getCustomer(customerId);
 
+            console.info('init ordersController.js');
+
             customersFactory.getCustomer(customerId)
                 .success(function(customer) {
                     $scope.customer = customer;

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app>
+
+<head>
+    <link rel="stylesheet" href="assets/css/frontend.css">
+    <title>Angular JS Hello</title>
+</head>
+
+<body ng-init="name='James'">
+    <!-- NAVIGATION -->
+    <section class="container">
+        <h1>Angular</h1>
+    </section>
+    <section id="logindiv" class="container">
+        <div ng-hide="isHidden">
+            Name:
+            <input type="text" ng-model="name">
+            <br> {{ name }}
+            <br>
+            <!-- Another approach you can take -->
+            <span ng-bind="name"></span>
+        </div>
+        Hide:
+        <input type="checkbox" ng-model="isHidden">
+        <br>
+        <button ng-click="name='Michelle'">change name</button>
+    </section>
+    <!-- End Get In Touch -->
+    <!-- FOOTER -->
+    <!-- FrontEnd js includes jQuery and Bootstrap Core JavaScript-->
+    <script type="text/javascript" src="assets/js/frontend.js"></script>
+    <!-- Plugin JavaScript -->
+</body>
+
+</html>

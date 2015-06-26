@@ -118,8 +118,8 @@ $log - general logging purposes.
             .when('/orders/:customerId', {
                 controller: 'OrdersController',
                 templateUrl: 'assets/views/orders.html'
-            })
-            .otherwise ({ redirectTo: '/' });
+            });
+            // .otherwise ({ redirectTo: '/' });
     });
 
 }());

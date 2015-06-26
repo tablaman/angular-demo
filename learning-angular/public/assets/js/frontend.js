@@ -13498,8 +13498,8 @@ $log - general logging purposes.
             .when('/orders/:customerId', {
                 controller: 'OrdersController',
                 templateUrl: 'assets/views/orders.html'
-            })
-            .otherwise ({ redirectTo: '/' });
+            });
+            // .otherwise ({ redirectTo: '/' });
     });
 
 }());
@@ -13634,6 +13634,9 @@ angular.module('customersApp').value('appSettings', {
         $scope.appSettings = appSettings;
 
         function init () {
+
+            // log
+            console.info('from customersController.js');
             // synchronous call
             // $scope.customers = customersFactory.getCustomers();
             
@@ -13715,6 +13718,8 @@ function customersCtrl () {
         function init () {
             // Search the customers for the customerId and obtain the order(s) relevant to that id
             // $scope.customer = customersFactory.getCustomer(customerId);
+
+            console.info('init ordersController.js');
 
             customersFactory.getCustomer(customerId)
                 .success(function(customer) {
