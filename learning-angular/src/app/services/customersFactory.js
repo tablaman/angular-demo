@@ -12,6 +12,14 @@
 
         factory.getCustomer = function(customerId) {
             return $http.get('http://localhost:8080/customers/' + customerId);
+        };
+
+        factory.getOrders = function(customerId) {
+            return $http.get('http://localhost:8080/orders/');
+        };
+
+        factory.deleteCustomer = function(customerId) {
+            return $http.delete('/customers/' + customerId);
         }
 
         return factory;

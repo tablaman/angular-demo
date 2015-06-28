@@ -3,12 +3,21 @@
 
 <head>
     <link rel="stylesheet" href="assets/css/frontend.css">
-    <title>Angular JS Hello</title>
+    <title>Angular JS App</title>
 </head>
 
 <body>
+
+<header>
+	<nav class="navbar navbar-default">
+		<ul class="nav navbar-nav">
+			<li><a href="#/customers">Customers</a></li>
+			<li><a href="#/orders">Orders</a></li>
+		</ul>
+	</nav>
+</header>
     <!-- MAIN -->
-   <div ng-view></div>
+   <div ng-view class="slide-animation"></div>
     <!-- FrontEnd js includes jQuery and Bootstrap Core JavaScript-->
     <script type="text/javascript" src="assets/js/frontend.js"></script>
 </body>

@@ -98,6 +98,21 @@ $timeout $window, $location, $q - asynch processors
 $rootScope, $interval, $filter - for custom filters
 $log - general logging purposes.
 
+*******************************************************
+ng-animate
+
+*******************************************************
+Common directives
+ngClass - Add and remove
+ngHide/ngShow -  Add and remove
+ngInclude -  Enter and leave
+ngRepeat -  Enter, leave, move
+ngSwitch -  Enter and leave
+ngView -  Enter and leave
+
+Custom Directives
+$animate service
+
 
 *******************************************************/
 
@@ -107,7 +122,7 @@ $log - general logging purposes.
 // Option 2 - wrap everything in anonymous functions - keep away from global context.
 (function() {
 
-    var app = angular.module('customersApp', ['ngRoute']);
+    var app = angular.module('customersApp', ['ngRoute', 'ngAnimate']);
 
     app.config(function($routeProvider) {
         $routeProvider
@@ -118,8 +133,12 @@ $log - general logging purposes.
             .when('/orders/:customerId', {
                 controller: 'OrdersController',
                 templateUrl: 'assets/views/orders.html'
-            });
-            // .otherwise ({ redirectTo: '/' });
+            })
+            .when('/orders', {
+                controller: 'AllOrdersController',
+                templateUrl: 'assets/views/allorders.html'
+            })
+            .otherwise ({ redirectTo: '/' });
     });
 
 }());

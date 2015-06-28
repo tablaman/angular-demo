@@ -43,6 +43,7 @@ module.exports = function(grunt) {
                 src: [
                     '<%= bowerDir %>/angular/angular.min.js',
                     '<%= bowerDir %>/angular-route/angular-route.min.js',
+                    '<%= bowerDir %>/angular-animate/angular-animate.min.js',
                     '<%= bowerDir %>/jquery/dist/jquery.js',
                     '<%= bowerDir %>/bootstrap/dist/js/bootstrap.js',
                     '<%= bowerDir %>/underscore/underscore.js',
@@ -56,6 +57,7 @@ module.exports = function(grunt) {
                     '<%= appDir %>/controllers/customersController.js',
                     '<%= appDir %>/controllers/customersControllerWithAs.js',
                     '<%= appDir %>/controllers/ordersController.js',
+                    '<%= appDir %>/controllers/allOrdersController.js',
                     '<%= appDir %>/services/customersFactory.js',
                     '<%= appDir %>/services/customersService.js'
 

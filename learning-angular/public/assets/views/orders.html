@@ -1,11 +1,16 @@
-<h2> {{ customer.name }}'s' Orders</h2>
-<table>
-    <tr>
-        <th>Product</th>
-        <th>Total</th>
-    </tr>
-    <tr ng-repeat="order in customer.orders">
-        <td> {{ order.product }} </td>
-        <td> {{ order.total | currency }}</td>
-    </tr>
-</table>
+<section class="container">
+    <nav>
+        <h2> {{ customer.name }}'s' Orders</h2>
+        <a href="#/customers" class="btn btn-md"><span class="glyphicon glyphicon-arrow-left"></span> Back to Customers</a>
+    </nav>
+    <table class="table table-striped">
+        <tr>
+            <th>Product</th>
+            <th>Total</th>
+        </tr>
+        <tr ng-repeat="order in customer.orders">
+            <td> {{ order.product }} </td>
+            <td> {{ order.total | currency }}</td>
+        </tr>
+    </table>
+</section>
