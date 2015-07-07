@@ -59,7 +59,13 @@ module.exports = function(grunt) {
                     '<%= appDir %>/controllers/ordersController.js',
                     '<%= appDir %>/controllers/allOrdersController.js',
                     '<%= appDir %>/services/customersFactory.js',
-                    '<%= appDir %>/services/customersService.js'
+                    '<%= appDir %>/services/customersService.js',
+                    '<%= appDir %>/directives/tableHelper.js',
+                    '<%= appDir %>/directives/mapGeoLocation.js',
+                    '<%= appDir %>/directives/directiveWithController.js',
+                    '<%= appDir %>/directives/directiveWithControllerAs.js'
+
+                    
 
 
                     
@@ -116,7 +122,8 @@ module.exports = function(grunt) {
                     // '<%= bowerDir %>/jqBootstrapValidation/dist/jqBootstrapValidation-1.3.7.js',
                     '<%= appDir %>/js/frontend.js',
                     '<%= appDir %>/controllers/*.js',
-                    '<%= appDir %>/services/*.js'
+                    '<%= appDir %>/services/*.js',
+                    '<%= appDir %>/directives/*.js'
 
                 ],
                 tasks: ['concat:js_frontend'], //tasks to run

@@ -113,6 +113,30 @@ ngView -  Enter and leave
 Custom Directives
 $animate service
 
+*******************************************************
+Custom directives
+- teach HTML new tricks
+*******************************************************
+use cases: maps, calendar component etc etc.
+
+CATEGORIES:
+DOM-Driven - all about DOM manipulation
+Data-Driven - All about data, using other directives and a controller
+Behaviour-Driven - all about handling DOM Events
+
+TYPES: 4 different way to define on a page
+Attribute directives: <span my-dir="exp"> </span>
+
+Element based: <my-dir></my-dir>
+
+** the 2 above are the most common
+
+The following are less frequent:
+CSS Class directives: <span class="my-dir: exp;"></span>
+
+Comment directives
+<!-- directive: my-dir exp -->
+
 
 *******************************************************/
 
@@ -123,6 +147,45 @@ $animate service
 (function() {
 
     var app = angular.module('customersApp', ['ngRoute', 'ngAnimate']);
+
+    // directive
+
+    app.directive('isolatedScopeWithString', function() {
+        // DDO - A Directive Definition Object
+        return {
+            scope: {
+                name: '@'
+            },
+            template: 'Hello World name: {{name}}'
+        };
+    });
+
+    app.directive('isolatedScope', function() {
+
+        return {
+            scope: {
+                datasource: '='
+
+
+            },
+            templateUrl: './assets/templates/isoloatedScope.html'
+        };
+    })
+
+    app.directive('isolatedScopeWithEvents', function() {
+
+        return {
+            scope: {
+                datasource: '=',
+                action: '&'
+
+
+            },
+            templateUrl: './assets/templates/isoloatedScopeWithEvents.html'
+        };
+    })
+
+    
 
     app.config(function($routeProvider) {
         $routeProvider
@@ -138,7 +201,9 @@ $animate service
                 controller: 'AllOrdersController',
                 templateUrl: 'assets/views/allorders.html'
             })
-            .otherwise ({ redirectTo: '/' });
+            .otherwise({
+                redirectTo: '/'
+            });
     });
 
 }());
@@ -155,8 +220,3 @@ function sth2() {
 }
 
 // this.sth2();
-
-
-
-
-

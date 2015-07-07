@@ -125,6 +125,10 @@
             $scope.reverse = !$scope.reverse;
         };
 
+        $scope.addCustomer = function() {
+            console.log('Ad Customer called');
+        }
+
         // Delete customer
         $scope.deleteCustomer = function(customerId) {
             customersFactory.deleteCustomer(customerId)
@@ -148,6 +152,11 @@
 
                 });
 
+        }
+
+        // Change data for directive
+        $scope.changeData  = function() {
+            console.log('ok here we change data!');
         }
 
     }

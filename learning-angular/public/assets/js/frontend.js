@@ -13545,6 +13545,30 @@ ngView -  Enter and leave
 Custom Directives
 $animate service
 
+*******************************************************
+Custom directives
+- teach HTML new tricks
+*******************************************************
+use cases: maps, calendar component etc etc.
+
+CATEGORIES:
+DOM-Driven - all about DOM manipulation
+Data-Driven - All about data, using other directives and a controller
+Behaviour-Driven - all about handling DOM Events
+
+TYPES: 4 different way to define on a page
+Attribute directives: <span my-dir="exp"> </span>
+
+Element based: <my-dir></my-dir>
+
+** the 2 above are the most common
+
+The following are less frequent:
+CSS Class directives: <span class="my-dir: exp;"></span>
+
+Comment directives
+<!-- directive: my-dir exp -->
+
 
 *******************************************************/
 
@@ -13555,6 +13579,45 @@ $animate service
 (function() {
 
     var app = angular.module('customersApp', ['ngRoute', 'ngAnimate']);
+
+    // directive
+
+    app.directive('isolatedScopeWithString', function() {
+        // DDO - A Directive Definition Object
+        return {
+            scope: {
+                name: '@'
+            },
+            template: 'Hello World name: {{name}}'
+        };
+    });
+
+    app.directive('isolatedScope', function() {
+
+        return {
+            scope: {
+                datasource: '='
+
+
+            },
+            templateUrl: './assets/templates/isoloatedScope.html'
+        };
+    })
+
+    app.directive('isolatedScopeWithEvents', function() {
+
+        return {
+            scope: {
+                datasource: '=',
+                action: '&'
+
+
+            },
+            templateUrl: './assets/templates/isoloatedScopeWithEvents.html'
+        };
+    })
+
+    
 
     app.config(function($routeProvider) {
         $routeProvider
@@ -13570,7 +13633,9 @@ $animate service
                 controller: 'AllOrdersController',
                 templateUrl: 'assets/views/allorders.html'
             })
-            .otherwise ({ redirectTo: '/' });
+            .otherwise({
+                redirectTo: '/'
+            });
     });
 
 }());
@@ -13587,11 +13652,6 @@ function sth2() {
 }
 
 // this.sth2();
-
-
-
-
-
 ;// Values
 // These will not be available in config
 angular.module('customersApp').value('appSettings', {
@@ -13731,6 +13791,10 @@ angular.module('customersApp').value('appSettings', {
             $scope.reverse = !$scope.reverse;
         };
 
+        $scope.addCustomer = function() {
+            console.log('Ad Customer called');
+        }
+
         // Delete customer
         $scope.deleteCustomer = function(customerId) {
             customersFactory.deleteCustomer(customerId)
@@ -13754,6 +13818,11 @@ angular.module('customersApp').value('appSettings', {
 
                 });
 
+        }
+
+        // Change data for directive
+        $scope.changeData  = function() {
+            console.log('ok here we change data!');
         }
 
     }
@@ -14083,5 +14152,408 @@ function customersCtrl () {
 
     angular.module('customersApp')
         .service('customersService', customersService);
+
+}());
+;(function() {
+    // Note: this is only temporary to show how it can be written
+
+    var tableHelper = function() {
+        var template = '<div class="tableHelper"></div>',
+            link = function(scope, element, attrs, ngModel) {
+                var headerCols = [],
+                    tableStart = '<table>',
+                    tableEnd = '</table>',
+                    table = '',
+                    visibleProps = [],
+                    datasource,
+                    sortCol = null,
+                    sortDir = 1,
+                    anotherMapValtoObj = null;
+
+
+                // converting a string val to object literals - use $eval or $parse
+                // with $parse, it returns a function, so you need to invoke it to execute.
+                anotherMapValtoObj = scope.$eval(attrs.newmap);
+                console.log(attrs.newmap);
+                console.log('------ converted -----');
+                console.log(anotherMapValtoObj);
+                console.log(anotherMapValtoObj[0].firstName);
+
+
+                // Watch for ngModel to change. Required since the $modelValue
+                // will be NaN initially
+
+                // METHOD 1 - least preferred
+                // attrs.$observe ('ngModel', function(value) {
+                //     scope.$watch('value', function (newValue) {
+                //         render();
+                //     });
+                // });
+                
+                // METHOD 2 
+                // scope.$watch(attrs.ngModel, render);
+
+                // METHOD 3 - use $modelValue change
+                // scope.$watch (function () {
+                //     return ngModel.$modelValue
+                // }, function (newValue) {
+                //     render();
+                // });
+
+                // METHOD 4 - BEST
+                // i.e. when the internals of the ngModel have changed, take action!
+                ngModel.$render = function () {
+                    render();
+                };
+
+
+                // scope.$watchCollection('datasource', render);
+                wireEvents();
+
+
+                function render() {
+                    if (ngModel && ngModel.$modelValue.length) {
+                        datasource = ngModel.$modelValue;
+                        table += tableStart;
+                        table += renderHeader();
+                        table += renderRows() + tableEnd;
+                        renderTable();
+
+                    }
+
+                }
+
+                function wireEvents() {
+
+                    console.info('tableHelper.js');
+
+                    element.on('click', function(event) {
+                        if (event.srcElement.nodeName === 'TH') {
+                            var val = event.srcElement.innerHTML;
+                            var col = (scope.columnmap) ? getRawColumnName(val) : val;
+                            if (col) sort(col);
+                        }
+                    });
+                }
+
+                function sort(col) {
+                    //See if they clicked on the same header
+                    //If they did then reverse the sort
+                    if (sortCol === col) sortDir = sortDir * -1;
+                    sortCol = col;
+                    datasource.sort(function(a, b) {
+                        if (a[col] > b[col]) return 1 * sortDir;
+                        if (a[col] < b[col]) return -1 * sortDir;
+                        return 0;
+                    });
+                    render();
+                }
+
+                function renderHeader() {
+                    var tr = '<tr>';
+                    for (var prop in datasource[0]) {
+                        var val = getColumnName(prop);
+                        if (val) {
+                            //Track visible properties to make it fast to check them later
+                            visibleProps.push(prop);
+                            tr += '<th>' + val + '</th>';
+                        }
+                    }
+                    tr += '</tr>';
+                    tr = '<thead>' + tr + '</thead>';
+                    return tr;
+                }
+
+                function renderRows() {
+                    var rows = '';
+                    for (var i = 0, len = datasource.length; i < len; i++) {
+                        rows += '<tr>';
+                        var row = datasource[i];
+                        for (var prop in row) {
+                            if (visibleProps.indexOf(prop) > -1) {
+                                rows += '<td>' + row[prop] + '</td>';
+                            }
+                        }
+                        rows += '</tr>';
+                    }
+                    rows = '<tbody>' + rows + '</tbody>';
+                    return rows;
+                }
+
+                function renderTable() {
+                    table += '<br /><div class="rowCount">' + datasource.length + ' rows</div>';
+                    element.html(table);
+                    table = '';
+                }
+
+                function getRawColumnName(friendlyCol) {
+                    var rawCol;
+                    scope.columnmap.forEach(function(colMap) {
+                        for (var prop in colMap) {
+                            if (colMap[prop] === friendlyCol) {
+                                rawCol = prop;
+                                break;
+                            }
+                        }
+                        return null;
+                    });
+                    return rawCol;
+                }
+
+                function filterColumnMap(prop) {
+                    var val = scope.columnmap.filter(function(map) {
+                        if (map[prop]) {
+                            return true;
+                        }
+                        return false;
+                    });
+                    return val;
+                }
+
+                function getColumnName(prop) {
+                    if (!scope.columnmap) return prop;
+                    var val = filterColumnMap(prop);
+                    if (val && val.length && !val[0].hidden) return val[0][prop];
+                    else return null;
+                }
+
+            };
+
+            return {
+                    restrict: 'E',
+                    require: 'ngModel',
+                    scope: {
+
+                        columnmap: '=',
+                        newmap: '='
+                        // evolution: 'datasource' property no longer required as we're now using ngModel.
+                        // datasource: '='      
+
+                    },
+                    template: template,
+                    link: link
+                }
+
+
+    }
+
+
+    angular.module('customersApp')
+        .directive('tableHelper', tableHelper);
+
+}());
+
+
+// app.directive('linkDemo', function() {
+
+//         var linkDemo = function () {
+//             return {
+//                 restrict: 'A',
+//                 link: function(scope, elem, attrs) {
+//                     // Using JQLite in our directives
+//                     elem.on('click', function () {
+//                         elem.html("hello there");
+//                     });
+//                     elem.on('mouseenter', function () {
+//                         elem.css('background-color', '#333');
+//                     });
+//                     elem.on('mouseleave', function () {
+//                         elem.css('background-color', '#fefefe');
+//                     });
+
+
+//                 };
+
+//             };
+//         });
+
+//         return {
+//             scope: {
+//                 datasource: '=',
+//                 action: '&'
+
+
+//             },
+//             templateUrl: './assets/templates/isoloatedScopeWithEvents.html'
+//         };
+//     })
+;// Map Geolocation
+
+
+(function() {
+
+	var mapGeoLocation = ['$window', function($window) {
+
+		var template = '<p><span id="status">looking up geolocation... </span></p>' +
+						'<br><div id="map"></div>',
+			mapContainer = null,
+			status = null;
+
+
+		var link = function (scope, elem, attrs) {
+			status = angular.element(document.getElementById('status'));
+			mapContainer = angular.element(document.getElementById('map'));
+
+			mapContainer.attr(	'style', 'height:' + scope.height + 
+								'px;width:' + scope.width + 'px');
+			// use the HTML5 geolocation
+			$window.navigator.geolocation.getCurrentPosition(mapLocation, geoError);
+		}
+
+		function mapLocation(pos) {
+              status.html('Found your location! Longitude: ' + pos.coords.longitude +
+                          ' Latitude: ' + pos.coords.latitude);
+
+              var latlng = new google.maps.LatLng(pos.coords.latitude,
+                                                  pos.coords.longitude);
+              var options = {
+                zoom: 15,
+                center: latlng,
+                mapTypeControl: true,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+              };
+
+              // requrest [0] to get the raw DOM element in jqLite or jQuery.
+              var map = new google.maps.Map(mapContainer[0], options);
+
+              var marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                title:"Your location"
+              });
+        }
+
+        function geoError(error) {
+           status.html('failed lookup ' + error.message);
+        }
+
+
+		return {
+			restrict: 'EA',
+
+			scope: {
+				height: '@',
+				width: '@'
+
+			},
+			link: link,
+			template: template
+
+		}
+
+	}];
+
+	angular.module('customersApp')
+        .directive('mapGeoLocation', mapGeoLocation);
+
+
+}());;// Map Geolocation
+
+
+(function() {
+
+    var directiveWithController = function() {
+
+        var controller = ['$scope', function($scope) {
+
+            init();
+
+            function init() {
+                $scope.items = angular.copy($scope.datasource);
+                console.log($scope.datasource);
+            }
+
+            $scope.addItem = function() {
+                var name = 'New Directive Controller Item';
+                $scope.add()(name);
+                $scope.items.push({
+                    name: name
+                });
+            }
+
+        }];
+
+
+
+
+        return {
+            restrict: 'EA',
+
+            scope: {
+                datasource: '=',
+                add: '&'
+
+
+            },
+            controller: controller,
+            // if using controllerAs, need the next line also define vm = this in controller.
+            // controllerAs: 'vm',
+            // bindToController: true,
+            templateUrl: './assets/templates/directiveWithController.html'
+        };
+
+    };
+
+
+
+    // directiveWithController.$inject = ['$scope', 'directiveWithController'];
+    angular.module('customersApp')
+        .directive('directiveWithController', directiveWithController);
+
+
+}());
+;// Map Geolocation
+
+
+(function() {
+
+    var directiveWithControllerAs = function() {
+
+        var controller = function() {
+
+            var vm = this;
+
+            init();
+
+            function init() {
+                vm.items = angular.copy(vm.datasource);
+                console.log(vm.datasource);
+            }
+
+            vm.addItem = function() {
+                var name = 'New Directive Controller Item';
+                vm.add()(name);
+                vm.items.push({
+                    name: name
+                });
+            }
+
+        };
+
+
+
+
+        return {
+            restrict: 'EA',
+
+            scope: {
+                datasource: '=',
+                add: '&'
+
+
+            },
+            controller: controller,
+            controllerAs: 'vm',
+            bindToController: true,
+            templateUrl: './assets/templates/directiveWithControllerAs.html'
+        };
+
+    };
+
+
+
+    angular.module('customersApp')
+        .directive('directiveWithControllerAs', directiveWithControllerAs);
+
 
 }());

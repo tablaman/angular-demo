@@ -27,3 +27,26 @@
         </table>
         <aside><span>Total customers: {{customers.length}}</span></aside>
     </section>
+
+    <section class="container">
+    <h3>Directives</h3>
+        <table-helper
+            ng-model="customers"
+            columnmap="[{name: 'Name'}, {city: 'City'}, {orderTotal: 'Order'}, {joined: 'JOINED', hidden: true}]" 
+             newmap="[{firstName: 'hello', lastName: 'world'}]">
+        </table-helper>
+        <br>
+        <br>
+        <br>
+        
+        <h3>Directive with controller</h3>
+        <directive-with-controller datasource="customers" add="addCustomer"></directive-with-controller>
+        <h3>Directive with ControllerAs</h3>
+        <directive-with-controller-as datasource="customers" add="addCustomer"></directive-with-controller-as>
+
+        
+        <br><br>
+        <!-- <map-geo-location width="700" height="450"></map-geo-location> -->
+    </section>
+
+    <!-- <isolated-scope-with-events action="changeData()"></isolated-scope-with-events> -->
