@@ -1,0 +1,16 @@
+<section class="container">
+    <nav>
+        <h2>Forms</h2>
+        <a href="#/customers" class="btn btn-md"><span class="glyphicon glyphicon-arrow-left"></span> Back Home</a>
+    </nav>
+    <table class="table table-striped">
+        <tr>
+            <th>Product</th>
+            <th>Total</th>
+        </tr>
+        <tr ng-repeat="order in customer.orders">
+            <td> {{ order.product }} </td>
+            <td> {{ order.total | currency }}</td>
+        </tr>
+    </table>
+</section>

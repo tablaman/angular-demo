@@ -1,0 +1,168 @@
+<!-- Main view -->
+<section class="container">
+    <section class="row">
+        <div class="col-lg-8">
+            <h2 class="am-divider am-divider-main">Build your package</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3>Choose your broadband plan</h3>
+                    <a href="#">Find out more</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <ul class="pagination pagination-lg pull-right">
+                                <li class="text-center" 
+                                	ng-repeat="plan in appSettings.broadbandPlans.options" 
+                                	ng-class="{active : plan.selected}"
+                                	ng-click="toggleSelection(plan)">
+                                    <a href="" >
+                                        <h4>{{ plan.label }}</h4>
+                                        <p> {{ plan.price }}
+                                            <br><span class="input-sm">per month</span>
+
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <span ng-bind-html="appSettings.broadbandPlans.footnote"></span>
+                    </div>
+                </div>
+
+                <select ng-model="appSettings.broadbandPlans.options" convert-to-number>
+
+</select>
+                <!-- <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <ul class="pagination pagination-lg pull-right">
+                                <li class="text-center">
+                                    <a href="#">
+                                        <h4>100 GB</h4>
+                                        <p>$50
+                                            <br><span class="input-sm">per month</span>
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="active text-center">
+                                    <a href="#">
+                                        <h4>250 GB</h4>
+                                        <p>$60
+                                            <br><span class="input-sm">per month</span>
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="text-center">
+                                    <a href="#">
+                                        <h4>Unlimited*</h4>
+                                        <p>$70
+                                            <br><span class="input-sm">per month</span>
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        * Unlimited plans have no data limit but are subject to our Fair Use Policy.
+                    </div>
+                </div> -->
+                <div class="row-space-3 am-divider am-divider-dotted">&nbsp;</div>
+                <div class="col-lg-6">
+                    <h3>Add voiced VOIP</h3>
+                    <a href="#">Find out more</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <ul class="pagination pagination-lg pull-right">
+                                <li class="text-center">
+                                    <a href="#">
+                                        <h4>No Thanks</h4>
+                                        <p>$50
+                                            <br><span class="input-sm">per month</span>
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="active text-center">
+                                    <a href="#">
+                                        <h4>Voiced #</h4>
+                                        <p>$12
+                                            <br><span class="input-sm">per month</span>
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-12">
+                            <form>
+                                <div class="btn-group" data-toggle="radio">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optradio">I have an active phone line
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optradio">I do not have an active phone line
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phoneNumber">Phone Number</label>
+                                    <input type="number" class="form-control" id="phoneNumber" placeholder="08 9562 2311">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-space-3 am-divider am-divider-dotted">&nbsp;</div>
+            <div class="am-callout am-callout-info">
+                <h4>Current promotional code: A MONTH BONUS CREDIT</h4>
+                <p>Terms and conditions: Sign up to Amnet Broadband before 01/12/2015 and recieve a months bonus credit on any plan. The month bonus credit will be applied to your account upon sign-up.</p>
+            </div>
+        </div>
+        <!-- /LEFT SECTION -->
+        <!-- RIGHT: ORDERS SUMMARY -->
+        <aside class="col-lg-4">
+            <div class=" panel panel-primary">
+                <div class="panel-heading">
+                    <h3>Your Plan Summary</h3></div>
+                <!-- List group -->
+                <ul class="list-group   ">
+                    <li class="list-group-item">Broadband Plan
+                        <!-- Single button -->
+                        <div class="btn-group pull-right" dropdown is-open="status.isopen">
+                            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                                Button dropdown <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="list-group-item">Phone Plan</li>
+                    <li class="list-group-item">Contract Term</li>
+                    <li class="list-group-item">Promo Offer</li>
+                    <li class="list-group-item">Connection Fee</li>
+                    <li class="list-group-item">Hardware</li>
+                </ul>
+                <div class="panel-body am-highlight am-highlight-md">
+                    <p>
+                        Monthly Fee
+                        <span class="pull-right">$ 240</span>
+                    </p>
+                </div>
+                <div class="panel-footer">
+                    <p>All prices inc GST</p>
+                </div>
+            </div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam sunt rerum libero cum in officia quo reprehenderit voluptatem, illo sapiente doloremque magnam dolore dolorum eveniet consequuntur quasi laborum eius qui.
+        </aside>
+        <!-- /ORDERS SUMMARY -->
+    </section>
+</sectionß>

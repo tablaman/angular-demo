@@ -41,9 +41,13 @@ module.exports = function(grunt) {
             },
             js_frontend: {
                 src: [
+                    '<%= bowerDir %>/api-check/dist/api-check.min.js',
                     '<%= bowerDir %>/angular/angular.min.js',
                     '<%= bowerDir %>/angular-route/angular-route.min.js',
                     '<%= bowerDir %>/angular-animate/angular-animate.min.js',
+                    '<%= bowerDir %>/angular-formly/formly.min.js',
+
+
                     '<%= bowerDir %>/jquery/dist/jquery.js',
                     '<%= bowerDir %>/bootstrap/dist/js/bootstrap.js',
                     '<%= bowerDir %>/underscore/underscore.js',
@@ -54,16 +58,21 @@ module.exports = function(grunt) {
                     // Angular Controllers
                     '<%= appDir %>/js/frontend.js',
                     '<%= appDir %>/services/values.js',
+
                     '<%= appDir %>/controllers/customersController.js',
                     '<%= appDir %>/controllers/customersControllerWithAs.js',
                     '<%= appDir %>/controllers/ordersController.js',
                     '<%= appDir %>/controllers/allOrdersController.js',
+                    '<%= appDir %>/controllers/FormsController.js',
+
                     '<%= appDir %>/services/customersFactory.js',
                     '<%= appDir %>/services/customersService.js',
+
                     '<%= appDir %>/directives/tableHelper.js',
                     '<%= appDir %>/directives/mapGeoLocation.js',
                     '<%= appDir %>/directives/directiveWithController.js',
                     '<%= appDir %>/directives/directiveWithControllerAs.js'
+
 
                     
 

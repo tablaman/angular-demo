@@ -13633,6 +13633,10 @@ Comment directives
                 controller: 'AllOrdersController',
                 templateUrl: 'assets/views/allorders.html'
             })
+            .when('/forms', {
+                controller: 'FormsController',
+                templateUrl: 'assets/views/forms.html'
+            })
             .otherwise({
                 redirectTo: '/'
             });
@@ -13954,6 +13958,34 @@ function customersCtrl () {
     AllOrdersController.$inject = ['$scope', 'customersFactory'];
     angular.module('customersApp')
         .controller('AllOrdersController', AllOrdersController);
+}());
+;// FormsController
+
+(function() {
+
+    var FormsController = function($scope) {
+        // Defaults
+        $scope.sortBy = 'name';
+
+
+        function init() {
+
+            // log
+            console.info('from FormsController.js');
+            // synchronous call
+            // $scope.customers = customersFactory.getCustomers();
+
+
+        }
+
+        init();
+
+        
+
+    }
+    FormsController.$inject = ['$scope'];
+    angular.module('customersApp')
+        .controller('FormsController', FormsController);
 }());
 ;(function() {
 

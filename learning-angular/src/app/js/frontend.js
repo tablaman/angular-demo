@@ -146,7 +146,7 @@ Comment directives
 // Option 2 - wrap everything in anonymous functions - keep away from global context.
 (function() {
 
-    var app = angular.module('customersApp', ['ngRoute', 'ngAnimate']);
+    var app = angular.module('customersApp', ['ngRoute', 'ngAnimate', 'formly', 'formlyBootstrap']);
 
     // directive
 
@@ -200,6 +200,10 @@ Comment directives
             .when('/orders', {
                 controller: 'AllOrdersController',
                 templateUrl: 'assets/views/allorders.html'
+            })
+            .when('/forms', {
+                controller: 'FormsController',
+                templateUrl: 'assets/views/forms.html'
             })
             .otherwise({
                 redirectTo: '/'
