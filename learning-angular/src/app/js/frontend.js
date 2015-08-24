@@ -146,7 +146,7 @@ Comment directives
 // Option 2 - wrap everything in anonymous functions - keep away from global context.
 (function() {
 
-    var app = angular.module('customersApp', ['ngRoute', 'ngAnimate', 'formly', 'formlyBootstrap']);
+    var app = angular.module('customersApp', ['ngRoute', 'ngAnimate']);
 
     // directive
 
@@ -209,6 +209,13 @@ Comment directives
                 redirectTo: '/'
             });
     });
+
+    // app.run(function(formlyConfig) {
+    //     formlyConfig.setType({
+    //         name: 'input',
+    //         template: 'hello world'
+    //     })
+    // })
 
 }());
 

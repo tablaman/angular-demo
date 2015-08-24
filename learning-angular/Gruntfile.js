@@ -41,20 +41,24 @@ module.exports = function(grunt) {
             },
             js_frontend: {
                 src: [
-                    '<%= bowerDir %>/api-check/dist/api-check.min.js',
-                    '<%= bowerDir %>/angular/angular.min.js',
-                    '<%= bowerDir %>/angular-route/angular-route.min.js',
-                    '<%= bowerDir %>/angular-animate/angular-animate.min.js',
-                    '<%= bowerDir %>/angular-formly/formly.min.js',
+                    // '<%= bowerDir %>/api-check/dist/api-check.js',
+                    // '<%= bowerDir %>/angular/angular.min.js',
+                    // '<%= bowerDir %>/angular-route/angular-route.min.js',
+                    // '<%= bowerDir %>/angular-animate/angular-animate.min.js',
+                    // '<%= bowerDir %>/angular-formly/formly.min.js',
+                    // '<%= bowerDir %>/angular-formly-templates-bootstrap/angular-formly-templates-bootstrap.min.js',
 
 
-                    '<%= bowerDir %>/jquery/dist/jquery.js',
-                    '<%= bowerDir %>/bootstrap/dist/js/bootstrap.js',
-                    '<%= bowerDir %>/underscore/underscore.js',
-                    '<%= appDir %>/js/jquery.easing.1.3.js',
+
+                    // '<%= bowerDir %>/jquery/dist/jquery.js',
+                    // '<%= bowerDir %>/bootstrap/dist/js/bootstrap.js',
+                    // '<%= bowerDir %>/underscore/underscore.js',
+                    // '<%= appDir %>/js/jquery.easing.1.3.js',
                     // '<%= bowerDir %>/jqBootstrapValidation/dist/jqBootstrapValidation-1.3.7.js',
                     // '<%= bowerDir %>/classie/classie.js',
                     // '<%= bowerDir %>/wow/dist/wow.js',
+
+                    
                     // Angular Controllers
                     '<%= appDir %>/js/frontend.js',
                     '<%= appDir %>/services/values.js',
@@ -74,10 +78,10 @@ module.exports = function(grunt) {
                     '<%= appDir %>/directives/directiveWithControllerAs.js'
 
 
-                    
 
 
-                    
+
+
 
                 ],
                 dest: './public/assets/js/frontend.js',
