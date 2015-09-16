@@ -1,0 +1,101 @@
+<html>
+
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://fb.me/react-0.13.3.js"></script>
+	<script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row target">
+			<!--<div class="col-sm-5 target ">
+				
+			</div>-->
+			<!--<div class="col-sm-5 target2">
+				
+			</div>-->
+		</div>
+	</div>
+</body>
+
+<script type="text/jsx">
+	// Define a class
+	var Badge =  React.createClass({
+		render: function () {
+		this.props 
+		
+		return <button className="btn btn-primary" type="button">
+			{this.props.title} <span className="badge">{this.props.number}</span>
+			</button>
+		}
+	});
+	var Thumbnail =  React.createClass({
+		render: function () {
+		return <div class="row">
+			<div class="col-sm-6 col-md-4">
+				<div className="thumbnail">
+				<img className="img-responsive" src={this.props.imageUrl}/>
+				<div className="caption">
+					<h3>{this.props.header}</h3>
+					<p>{this.props.description}</p>
+					<p>
+					
+					<Badge title={this.props.title} number={this.props.number}/>
+					</p>
+				</div>
+				</div>
+			</div>
+			</div>
+		}
+	});
+	
+	var ThumbnailList =  React.createClass({
+		render: function () {
+			var list = this.props.thumbnailData.map(function(thumbnailProp){
+				return <div className="col-sm-5"> <Thumbnail {...thumbnailProp} /> </div>
+			});
+			
+			return <div>
+						{list}
+					</div>
+			
+		}
+	});
+	
+	
+	
+	
+	var options = {
+	thumbnailData: [{
+		title: 'React',
+		number: 32,
+		header: 'Learn React',
+		description: 'React is ok laaaaaaa',
+		imageUrl: 'https://facebook.github.io/react/img/logo_og.png'
+	
+	}, {
+		title: 'GULP',
+		number: 12,
+		header: 'Learn Gulp is cool',
+		description: 'gulp will speed up your dev workflow',
+		imageUrl: 'https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png'
+	
+	}]
+}
+
+	
+	
+	// React, please render this class
+	// var el = React.createElement(Thumbnail,  options);
+	var el2 = React.createElement(ThumbnailList, options);
+	
+	
+	// React, after you render this class, place it in my body tag
+	// React.render(el, document.querySelector('.target'));
+	React.render(el2, document.querySelector('.target'));
+
+</script>
+
+</html>

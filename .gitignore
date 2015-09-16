@@ -1,2 +1,18 @@
+## Application specific
+public/javascripts/
+
+## Other
 node_modules/
 bower_components/
+npm-debug.log
+
+## VS Code settings
+.settings/
+typings/
+
+.DS_Store
+.sass-cache
+*.map
+
+## Webstorm (Jetbrains)
+.idea/
