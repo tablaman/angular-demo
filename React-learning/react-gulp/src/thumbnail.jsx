@@ -1,6 +1,7 @@
-	var Badge = require('badge');
+	var React = require('react');
+	var Badge = require('./badge');
 	
-	var Thumbnail =  React.createClass({
+	module.exports =  React.createClass({
 		render: function () {
 		return <div class="row">
 			<div class="col-sm-6 col-md-4">

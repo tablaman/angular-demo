@@ -19,7 +19,7 @@ gulp.task('default', function () {
 	}));
 	
 	function build (file) {
-		if (file) gutil.log('Recompiling ' + file);
+		if (file) gutil.log('Rebuilding ' + file);
 		
 		return bundler
 			.bundle()

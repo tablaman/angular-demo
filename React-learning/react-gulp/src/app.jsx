@@ -1,3 +1,6 @@
+var React = require('react');
+var ThumbnailList = require('./thumbnail-list');
+
 var options = {
 	thumbnailData: [{
 		title: 'React',
@@ -16,8 +19,8 @@ var options = {
 	}]
 }
 
-	
-	
+	console.log('hello from app JSX');
+	// hello
 	// React, please render this class
 	// var el = React.createElement(Thumbnail,  options);
 	var el2 = React.createElement(ThumbnailList, options);
