@@ -36,6 +36,7 @@ module.exports = React.createClass({
         )
     },
     renderTopics: function () {
+        // restrict to the first 4 topics just for demo purposes use .slice(0,4)
         return this.state.topics.map(function(topic) {
             return <Link to={'topics/' + topic.id} className="list-group-item" key={topic.id}>
                         <h4>{topic.name}</h4>
