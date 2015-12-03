@@ -21,13 +21,15 @@ You must have the following installed:
     $ sudo npm install --save bootstrap jquery gulp-concat
 
 
-#### Clone this repository
-    git clone git@git.vocus.net:amnet/signup-form.git
+#### ES Lint
+    $ sudo npm install --save gulp-eslint
 
-#### From the project folder `trueblue` run:
+#### To install `React` libs
 
-    $ npm install
-    $ bower install
+    $ sudo npm install --save react react-router flux
+
+Alternatively
+    $ sudo npm install --save react@0.13.3 react-router@0.13.3 flux2.0.3
 
 ```
 hellowskjdflkajsdf
