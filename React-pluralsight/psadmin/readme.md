@@ -26,7 +26,9 @@ You must have the following installed:
 
 #### To install `React` libs
 
-    $ sudo npm install --save react react-router flux
+    $ sudo npm install --save flux
+    $ sudo npm install --save react react-dom
+    $ sudo npm install history react-router@latest
 
 Alternatively
     $ sudo npm install --save react@0.13.3 react-router@0.13.3 flux2.0.3

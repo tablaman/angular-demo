@@ -14,7 +14,8 @@ var config = {
   devBaseUrl: 'http://localhost',
   paths: {
     html: './src/*.html',
-    js: '.src/**/*.js',
+    js: './src/**/*.js',
+    images: './src/images/*',
     css: [
         'node_modules/bootstrap/dist/css/bootstrap.min.css',
         'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
@@ -61,6 +62,18 @@ gulp.task('js', function() {
     .pipe(connect.reload());
 });
 
+// Images: migrates images to dist folder
+// Note that I could even optimise my images here!
+gulp.task ('images', function () {
+  gulp.src(config.paths.images)
+    .pipe(gulp.dest(config.paths.dist + '/images'))
+    .pipe(connect.reload());
+
+    // publish favicon
+    gulp.src('./src/favicon.ico')
+      .pipe(gulp.dest(config.paths.dist));
+});
+
 // CSS task
 gulp.task('css', function () {
   gulp.src(config.paths.css)
@@ -70,6 +83,7 @@ gulp.task('css', function () {
 
 // Lint task
 // Output to console
+// not running currently
 gulp.task('lint', function () {
   return gulp.src(config.paths.js)
             .pipe(lint({config: 'eslint.config.json'}))
@@ -79,9 +93,11 @@ gulp.task('lint', function () {
 // watch task
 gulp.task('watch', function() {
   gulp.watch(config.paths.html, ['html']);
-  gulp.watch(config.paths.js, ['js', 'lint']);
-  gulp.watch(config.paths.indexJs, ['js', 'lint']);
+  gulp.watch(config.paths.js, ['js']);
+  gulp.watch(config.paths.indexJs, ['js']);
+  // gulp.watch(config.paths.js, ['js', 'lint']);
+  // gulp.watch(config.paths.indexJs, ['js', 'lint']);
 });
 
 // DEFAULT task
-gulp.task('default', ['html', 'js', 'css', 'lint', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'css', 'images',  'open', 'watch']);

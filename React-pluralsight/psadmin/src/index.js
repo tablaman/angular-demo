@@ -1,6 +1,14 @@
-$ = jQuery = require('jquery');
+"use strict";
 
-var App = console.log('hello world form mili');
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+// v1.0.0 implementation of Router
+var ReactRouter = require('react-router');
+var Router = ReactRouter.Router;
+
+var routes = require('./routes');
 
 
-module.exports = App;
+  // ReactDOM.render(<Router>{routes}</Router>, document.getElementById('app'));
+  ReactDOM.render(routes, document.getElementById('app'));
