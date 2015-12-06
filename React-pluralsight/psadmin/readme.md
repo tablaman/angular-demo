@@ -30,15 +30,8 @@ You must have the following installed:
     $ sudo npm install --save react react-dom
     $ sudo npm install history react-router@latest
 
-Alternatively
-    $ sudo npm install --save react@0.13.3 react-router@0.13.3 flux2.0.3
-
-```
-hellowskjdflkajsdf
-jasdklfja
-
-
-```
+## Major changes to react-router (from v.0.13 to v1.0.0)
+- [v1.0.0](https://github.com/rackt/react-router/blob/master/CHANGES.md "React Router v1.0.0)
 
 
 

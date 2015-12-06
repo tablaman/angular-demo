@@ -13,7 +13,6 @@ var App = React.createClass({
           <Header />
           <div className="container-fluid">
             {this.props.children}
-            <Home />
           </div>
         </div>
       );
