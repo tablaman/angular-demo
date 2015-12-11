@@ -21,7 +21,7 @@ var routes = (
   <Router history={createHashHistory()}>
     <Route name="main" path="/" component={App}>
       <IndexRoute component={HomePage} />
-      <Route path="about" component={AboutPage }/>
+      <Route path="about" component={AboutPage } />
       <Route path="authors" component={AuthorPage} />
       <Route path="author" name="addAuthor" component={ManageAuthorPage} />
       <Route path="author/:id" name="manageAuthor" component={ManageAuthorPage} />

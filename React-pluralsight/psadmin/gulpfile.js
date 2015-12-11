@@ -1,6 +1,7 @@
 "user strict";
 
 var gulp = require('gulp');
+var babel = require('gulp-babel'); // Babel for jsx and ES6
 var connect = require('gulp-connect'); // runs local dev server
 var open = require('gulp-open'); //Open a URL in a web browser
 var browserify = require('browserify'); // Bundles JS and brings node modules over to the browser
@@ -52,6 +53,14 @@ gulp.task('html', function() {
     .pipe(connect.reload());
 });
 
+// Build JSX components
+gulp.task('babel', function () {
+  return gulp.src(config.paths.js)
+    .pipe(babel())
+    .pipe(gulp.dest(config.paths.dist + '/scripts'))
+  ;
+});
+
 // js task
 gulp.task('js', function() {
   browserify(config.paths.indexJs)
@@ -101,4 +110,5 @@ gulp.task('watch', function() {
 });
 
 // DEFAULT task
+// gulp.task('default', ['html', 'babel', 'css', 'images',  'open', 'watch']);
 gulp.task('default', ['html', 'js', 'css', 'images',  'open', 'watch']);

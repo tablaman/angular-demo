@@ -3,7 +3,8 @@
 var React = require('react');
 var Router = require('react-router');
 var AuthorForm = require('./authorForm');
-var AuthorApi = require('../../api/authorApi');
+var AuthorActions = require('../../actions/authorActions');
+var AuthorStore = require('../../stores/authorStore');
 var toastr = require('toastr');
 
 // This top-level component will be the 'smart' one.
@@ -36,7 +37,7 @@ var ManageAuthorPage = React.createClass({
     var authorId = this.props.params.id; // from the path '/author: id'
 
     if (authorId) {
-      this.setState({author: AuthorApi.getAuthorById(authorId)});
+      this.setState({author: AuthorStore.getAuthorById(authorId)});
     }
   },
 
@@ -69,8 +70,13 @@ var ManageAuthorPage = React.createClass({
     event.preventDefault(); // otherwise clicking submit will actually cause page to submit
     if (!this.authorFormIsValid()) return;
 
+    if (this.state.author.id) {
+      AuthorActions.updateAuthor(this.state.author);
+    } else {
+      AuthorActions.createAuthor(this.state.author);
+    }
+    
     this.setState({dirty: false});
-    AuthorApi.saveAuthor(this.state.author);
     toastr.success('Author has been added!');
     // Navigate back to /authors
     this.history.pushState(null, '/authors');
