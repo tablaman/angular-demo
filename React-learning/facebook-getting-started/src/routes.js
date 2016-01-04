@@ -12,7 +12,6 @@ var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 var Redirect = ReactRouter.Redirect;
 
-
 var routes = (
   <Router history={createHashHistory()}>
     <Route name="main" path="/" component={App}>
