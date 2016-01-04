@@ -15,7 +15,6 @@ var Redirect = ReactRouter.Redirect;
 var routes = (
   <Router history={createHashHistory()}>
     <Route name="main" path="/" component={App}>
-      <IndexRoute component={CommentBox} />
 
       <Redirect from="auth" to="authors" />
       <Redirect from="about-us" to="about" />

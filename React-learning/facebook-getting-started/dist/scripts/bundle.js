@@ -33871,6 +33871,7 @@ module.exports = warning;
 /*eslint-disable strict */ // Disabling check because we can't run strict mode. Need global vars.
 
 var React = require('react');
+var CommentBox = require('./commentBox.js');
 $ = jQuery = require('jquery');
 
 var App = React.createClass({displayName: "App",
@@ -33878,6 +33879,7 @@ var App = React.createClass({displayName: "App",
       return (
         React.createElement("div", null, 
           React.createElement("div", {className: "container-fluid"}, 
+            React.createElement(CommentBox, {url: "http://localhost:3000/api/comments", pollInterval: 2000}), 
             this.props.children
           )
         )
@@ -33888,7 +33890,7 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"jquery":22,"react":206}],210:[function(require,module,exports){
+},{"./commentBox.js":211,"jquery":22,"react":206}],210:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -33918,17 +33920,34 @@ var React = require('react');
 var CommentList = require('./commentList.js');
 var CommentForm = require('./commentForm.js');
 
-var data = [
-  {id: 1, author: "Pete Hunt", text: "This is one comment"},
-  {id: 2, author: "Jordan Walke", text: "This is *another* comment"}
-];
-
 var CommentBox = React.createClass({displayName: "CommentBox",
+  getInitialState: function () {
+    return {
+      data: []
+    }
+  },
+  loadCommentsFromServer: function() {
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      cache: false,
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
+  componentDidMount: function() {
+    this.loadCommentsFromServer();
+    setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+  },
   render: function() {
     return (
       React.createElement("div", {className: "commentBox"}, 
         React.createElement("h1", null, "comments"), 
-        React.createElement(CommentList, {data: data}), 
+        React.createElement(CommentList, {data: this.state.data}), 
         React.createElement(CommentForm, null)
       )
     );
@@ -34040,7 +34059,6 @@ var Redirect = ReactRouter.Redirect;
 var routes = (
   React.createElement(Router, {history: createHashHistory()}, 
     React.createElement(Route, {name: "main", path: "/", component: App}, 
-      React.createElement(IndexRoute, {component: CommentBox}), 
 
       React.createElement(Redirect, {from: "auth", to: "authors"}), 
       React.createElement(Redirect, {from: "about-us", to: "about"}), 
