@@ -5,10 +5,10 @@ var babel = require('gulp-babel'); // Babel for jsx and ES6
 var connect = require('gulp-connect'); // runs local dev server
 var open = require('gulp-open'); //Open a URL in a web browser
 var browserify = require('browserify'); // Bundles JS and brings node modules over to the browser
-var reactify = require('reactify'); // Transforms React JSX to JS
+// var reactify = require('reactify'); // Transforms React JSX to JS
 var source = require('vinyl-source-stream'); // Use conventional text streams with gulp
 var concat = require('gulp-concat'); // concatenates files
-var lint = require('gulp-eslint'); // Lint JS files, including JSX
+// var lint = require('gulp-eslint'); // Lint JS files, including JSX
 
 var config = {
   port: 9005,
@@ -64,7 +64,7 @@ gulp.task('babel', function () {
 // js task
 gulp.task('js', function() {
   browserify(config.paths.indexJs)
-    .transform(reactify)
+    // .transform(reactify)
     .bundle()
     .on('error', console.error.bind(console))
     .pipe(source('bundle.js'))
@@ -105,10 +105,7 @@ gulp.task('watch', function() {
   gulp.watch(config.paths.html, ['html']);
   gulp.watch(config.paths.js, ['js']);
   gulp.watch(config.paths.indexJs, ['js']);
-  // gulp.watch(config.paths.js, ['js', 'lint']);
-  // gulp.watch(config.paths.indexJs, ['js', 'lint']);
 });
 
 // DEFAULT task
-// gulp.task('default', ['html', 'babel', 'css', 'images',  'open', 'watch']);
 gulp.task('default', ['html', 'js', 'css', 'images',  'open', 'watch']);
