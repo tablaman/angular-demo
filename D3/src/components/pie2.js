@@ -36,8 +36,6 @@ var usingLayouts = function (data, x, y) {
 
 d3.json("ufo-types.json", function(data) {
   usingLayouts(data, 200, 200);
-
-
 });
 
 // $("svg path").tooltip({
