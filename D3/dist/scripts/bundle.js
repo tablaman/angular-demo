@@ -18767,90 +18767,122 @@ return jQuery;
 },{}],3:[function(require,module,exports){
 "use strict";
 
-// Section 2-1 - creating your own Layouts
+// Using Layouts
 var $ = require('jquery');
 var d3 = require('d3');
 
-var svg = d3.select('#graph')
+
+var dataset = [5, 10, 14, 20, 25, 11, 22, 18, 5, 7, 10, 45, 32, 54],
+    w = 300,
+    h = 100,
+    padding = 2;
+var svg = d3.select("#graph")
             .append("svg")
-            .style({
-              width: "100%",
-              height: 500
-            });
-
-var usingLayouts = function (data, x, y) {
-  data = data.sort(function(a,b){
-    return d3.descending(a.value, b.value);
-  });
-  var colours = d3.scale.category20c(),
-      // pie = d3.layout.pie()
-      //       .value(function(d){ return d.value; })
-      //       .startAngle(-.5)
-      //       .endAngle(-2.5),
-      arc = d3.svg.arc(),
-          // .outerRadius(150),
-      slice = svg.selectAll('.slice')
-            .data(data)
-            .enter()
-            .append("g")
-            .attr("transform", "translate(" + x +", "+ y +")");
-      slice.append("path")
-          .attr({d: arc,
-                    fill: function (d,i) {return colours(i);},
-                    title: function (d) {return d.data.label + " ("+d.data.value+")";}
-                  });
-};
-
-
-var parseTimes = function (data) {
-  return data.map(function(d) {
-    d.time = Date.parse(d.time);
-    return d;
-  }).filter(function (d) {
-    return !!d.time;
-  }).map(function(d) {
-    d.time = new Date(d.time);
-    return d;
-  })
-}
-
-d3.json("triangle-ufos.json", function(data) {
-  data = parseTimes(data);
-
-  var histogram = d3.layout.histogram()
-                  .value(function(d){
-                    return d.time.getHours();
-                  })
-                  .bins(24);
-
-  var binned = histogram(data);
-
-  var radians = d3.scale.linear()
-                .domain([0, d3.max(binned.map(function(d){ return d.x; }))])
-                .range([0, 2*Math.PI]),
-
-      innerRadius = 20;
-
-  binned = binned.map(function(d){
-    d.innerRadius = innerRadius;
-    d.outerRadius = d.innerRadius+d.y;
-    d.startAngle = radians(d.x)-radians(d.dx/2);
-    d.endAngle = radians(d.x)+radians(d.dx/2);
-
-    return d;
-  });
-
-  usingLayouts(binned, 300, 200);
-  console.log(binned);
-});
+            .attr("width", w)
+            .attr("height", h);
 //
+// svg.selectAll('rect')
+//     .data(dataset)
+//     .enter()
+//     .append('rect')
+//       .attr('x', function (d, i){
+//         return i * (w/dataset.length);
+//       })
+//       .attr('y', function(d){
+//         return h - (d);
+//       })
+//       .attr("width", w/dataset.length - padding)
+//       .attr("height", function (d) {
+//         return d * 4;
+//       })
+//       .attr('fill',function (d) {
+//         return 'rgb(0, ' + (d*10) + ',0)';
+//       });
 
-// $("svg path").tooltip({
-//   container: "body",
-//   placement: "right"
-// });
+
+function colorPicker(v) {
+  if (v <= 20) { return "#666"; }
+  else if (v > 20) { return "#FF0033"; }
+}
+// Better way of Writing this out
+// Add rect
+svg.selectAll('rect')
+    .data(dataset)
+    .enter()
+    .append('rect')
+      .attr({
+        x: function (d, i){ return i * (w/dataset.length);},
+        y: function(d){ return h - (d);},
+        width: w/dataset.length - padding,
+        height: function(d) { return d * 4 },
+        // fill: function(d) {return 'rgb(0, ' + (d*10) + ',0)';}
+        fill: function(d) {return colorPicker(d);}
+      });
+
+// Add text
+svg.selectAll('text')
+  .data(dataset)
+  .enter()
+  .append("text")
+  .text(function(d) { return d;})
+  .attr({
+    "text-anchor": "middle",
+    x: function(d,i) {return i* (w/dataset.length) + (w / dataset.length - padding)/2;},
+    y: function(d) { return h - (d*4)+14;},
+    "font-family": "sans-serif",
+    "font-size": 12
+  });
 
 },{"d3":1,"jquery":2}],4:[function(require,module,exports){
+"use strict";
+
+// Line 1
+var $ = require('jquery');
+var d3 = require('d3');
+
+
+var dataset = [5, 10, 14, 20, 25, 11, 22, 18, 5, 7, 10, 45, 32, 54],
+    w = 200,
+    h = 100,
+    padding = 2,
+    monthlySales = [
+      {'month': 10, 'sales': 20},
+      {'month': 20, 'sales': 14},
+      {'month': 30, 'sales': 20},
+      {'month': 40, 'sales': 21},
+      {'month': 50, 'sales': 15},
+      {'month': 60, 'sales': 22},
+      {'month': 70, 'sales': 9},
+      {'month': 80, 'sales': 6},
+      {'month': 90, 'sales': 23},
+      {'month': 100, 'sales': 7},
+    ];
+
+var lineFun = d3.svg.line()
+              .x(function(d) { return d.month*2;})
+              .y(function(d) { return d.sales;})
+              .interpolate('linear');
+
+
+var svg = d3.select("#graph")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+function colorPicker(v) {
+  if (v <= 20) { return "#666"; }
+  else if (v > 20) { return "#FF0033"; }
+}
+
+var viz = svg.append('path')
+              .attr({
+                d: lineFun(monthlySales),
+                'stroke': 'purple',
+                'stroke-width': 2,
+                'fill': 'none'
+              });
+
+},{"d3":1,"jquery":2}],5:[function(require,module,exports){
 "use strict";
 
 var $ = require('jquery');
@@ -18858,6 +18890,8 @@ var d3 = require('d3');
 
 // var pie1 = require('./components/pie1');
 // var pie2 = require('./components/pie2');
-var pie1 = require('./components/section2-1');
+// var pie1 = require('./components/section2-1');
+var bar1 = require('./components/bar1');
+var line1 = require('./components/line1');
 
-},{"./components/section2-1":3,"d3":1,"jquery":2}]},{},[4]);
+},{"./components/bar1":3,"./components/line1":4,"d3":1,"jquery":2}]},{},[5]);
