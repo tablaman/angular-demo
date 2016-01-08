@@ -3,6 +3,8 @@
 // Stacked Area
 var $ = require('jquery');
 var d3 = require('d3');
+var d3tip = require('d3-tip');
+
 
 var NSW = "NSW";
 var QLD = "QLD";
@@ -143,6 +145,15 @@ var area = d3.svg.area()
   .y0(height)
   .y1(function(d) { return y(d.close); });
 
+// var tip = d3tip()
+//   .attr('class', 'd3-tip')
+//   .offset([-10, 0])
+//   .html(function(d) {
+//     return "<strong>Frequency:</strong> <span style='color:red'>" + d.close + "</span>";
+// });
+
+
+
 var svg = d3.select("#graph")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
@@ -151,17 +162,49 @@ var svg = d3.select("#graph")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
+  // Prep the tooltip bits, initial display is hidden
+    var tooltip = svg.append("g")
+      .attr("class", "tooltip")
+      .style("opacity", 1.0)
+      .style("display", "none");
 
+    tooltip.append("rect")
+      .attr("width", 120)
+      .attr("height", 20)
+      .attr("fill", "white")
+      .style("opacity", 1.0);
+
+    tooltip.append("text")
+      .attr("x", 60)
+      .attr("dy", "1.2em")
+      .style("text-anchor", "middle")
+      .attr("font-size", "12px")
+      .attr("font-weight", "bold");
 // x.domain(d3.extent(data, function(d){ return d.date }));
 // y.domain([0, d3.max(data, function(d) { return d.close })]);
+
 svg
   .selectAll("path.area")
   .data([data,data2])          // !!! here i can pass both arrays in.
   .enter()
   .append("path")
   .attr("fill", "rgba(100,200,0,0.5)")
-  // .attr("class", function(d,i) { return [NSW,QLD][i]; })
-  .attr("d", area);
+  .attr("class", function(d,i) { return [NSW,QLD][i]; })
+  .attr("d", area)
+  .on("mouseover", function() {
+    tooltip.style("display", null);
+   })
+  .on("mouseout", function() {
+    tooltip.style("display", "none");
+  })
+  .on("mousemove", function(d) {
+    var xPosition = d3.mouse(this)[0] - 15;
+    var yPosition = d3.mouse(this)[1] - 25;
+    tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
+    var x0 = x.invert(d3.mouse(this)[0]);
+    var y0 = y.invert(d3.mouse(this)[1]);
+    tooltip.select("text").text(d3.time.format('%Y/%m/%d')(x0)+ " " +Math.round(y0));
+  });
 
 // svg.append("path")
 //     .datum(data)
@@ -175,4 +218,10 @@ svg.append("g")
 
 svg.append("g")
     .attr("class", "y axis")
-    .call(yAxis);
+    .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Price ($)");
