@@ -1,13 +1,14 @@
 "use strict";
 
 // Stacked Area
+// Using a different tooltip - circle.
 var $ = require('jquery');
 var d3 = require('d3');
 var d3tip = require('d3-tip');
 
 
-var BW1 = "BW1";
-var BW2 = "BW2";
+var NSW = "NSW";
+var QLD = "QLD";
 
 var data = [{"date":"1-May-12","bandwidth":"80.13"},
             {"date":"30-Apr-12","bandwidth":"24.98"},
@@ -145,14 +146,6 @@ var area = d3.svg.area()
   .y0(height)
   .y1(function(d) { return y(d.bandwidth); });
 
-// var tip = d3tip()
-//   .attr('class', 'd3-tip')
-//   .offset([-10, 0])
-//   .html(function(d) {
-//     return "<strong>Frequency:</strong> <span style='color:red'>" + d.bandwidth + "</span>";
-// });
-
-
 
 var svg = d3.select("#graph")
   .append("svg")
@@ -163,39 +156,48 @@ var svg = d3.select("#graph")
 
 
   // Prep the tooltip bits, initial display is hidden
-    var tooltip = svg.append("g")
-      .attr("class", "tooltip")
-      .style("opacity", 1.0)
-      .style("display", "none");
 
-    tooltip.append("rect")
-      .attr("width", 120)
-      .attr("height", 20)
-      .attr("fill", "#fefefe")
-      .style("opacity", 1.0);
-
-    tooltip.append("text")
-      .attr("x", 60)
-      .attr("dy", "1.2em")
-      .style("text-anchor", "middle")
-      .attr("font-size", "12px")
-      .attr("font-weight", "bold")
-      .style("color", "white");
-// x.domain(d3.extent(data, function(d){ return d.date }));
-// y.domain([0, d3.max(data, function(d) { return d.bandwidth })]);
 
 svg
   .selectAll("path.area")
   .data([data,data2])          // !!! here i can pass both arrays in.
   .enter()
   .append("path")
-  // .attr("fill", "rgba(100,200,0,0.5)")
   .attr("fill", "rgba(247,142,88,0.5)")
-  .attr("class", function(d,i) { return [BW1,BW2][i]; })
-  .attr("d", area)
-  .on("mouseover", function() {
-    tooltip.style("display", null);
-   })
+  .attr("class", function(d,i) { return [NSW,QLD][i]; })
+  .attr("d", area);
+  // .on("mouseover", function() {
+  //   tooltip.style("display", null);
+  //  })
+  // .on("mouseout", function() {
+  //   tooltip.style("display", "none");
+  // })
+  // .on("mousemove", function(d) {
+  //   var xPosition = d3.mouse(this)[0]-50;
+  //   var yPosition = d3.mouse(this)[1]-20;
+  //   tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
+  //   var x0 = x.invert(d3.mouse(this)[0]);
+  //   var y0 = y.invert(d3.mouse(this)[1]);
+  //   tooltip.select("text").text(Math.round(y0));
+  //   // tooltip.select("text").text(d3.time.format('%Y/%m/%d')(x0)+ " " +Math.round(y0));
+  // });
+
+// Draw appropriate circles
+svg
+  .selectAll("path.area")
+  .data([data,data2])          // !!! here i can pass both arrays in.
+  .enter()
+  .append("svg:circle")
+  .attr("cx", function(d) { return x(d.date); })
+  .attr("cy", function(d) { return y(d.bandwidth); })
+  .attr("r", 3)
+  .attr("opacity", 1)
+  .append("svg:title").text(function(d) {return "Time: " + d.date + "\nValue: " + d.bandwidth;})
+  // .on("mouseover", function() {
+  //   tooltip.style("display", null);
+  //  })
+   .on("mouseover", function(d, i)
+   { return alert("value: " + d[i].bandwidth);})
   .on("mouseout", function() {
     tooltip.style("display", "none");
   })
@@ -205,22 +207,16 @@ svg
     tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
     var x0 = x.invert(d3.mouse(this)[0]);
     var y0 = y.invert(d3.mouse(this)[1]);
-    tooltip.select("text").text(Math.round(y0) + " MB/sec");
+    tooltip.select("text").text(Math.round(y0));
     // tooltip.select("text").text(d3.time.format('%Y/%m/%d')(x0)+ " " +Math.round(y0));
   });
 
+  var line = d3.svg.line();
+  console.log(line);
+  // svg.select("path.line").attr("d", line(data)).on("mouseover",
+  // function(d, i) { return alert("value: " + d[i].value);});
 
 svg.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0," + height + ")")
     .call(xAxis);
-
-// svg.append("g")
-//     .attr("class", "y axis")
-//     .call(yAxis)
-//     .append("text")
-//       .attr("transform", "rotate(-90)")
-//       .attr("y", 6)
-//       .attr("dy", ".71em")
-//       .style("text-anchor", "end")
-//       .text("Price ($)");

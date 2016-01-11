@@ -19079,8 +19079,8 @@ var d3 = require('d3');
 var d3tip = require('d3-tip');
 
 
-var NSW = "NSW";
-var QLD = "QLD";
+var BW1 = "BW1";
+var BW2 = "BW2";
 
 var data = [{"date":"1-May-12","bandwidth":"80.13"},
             {"date":"30-Apr-12","bandwidth":"24.98"},
@@ -19244,7 +19244,7 @@ var svg = d3.select("#graph")
     tooltip.append("rect")
       .attr("width", 120)
       .attr("height", 20)
-      .attr("fill", "white")
+      .attr("fill", "#fefefe")
       .style("opacity", 1.0);
 
     tooltip.append("text")
@@ -19252,7 +19252,8 @@ var svg = d3.select("#graph")
       .attr("dy", "1.2em")
       .style("text-anchor", "middle")
       .attr("font-size", "12px")
-      .attr("font-weight", "bold");
+      .attr("font-weight", "bold")
+      .style("color", "white");
 // x.domain(d3.extent(data, function(d){ return d.date }));
 // y.domain([0, d3.max(data, function(d) { return d.bandwidth })]);
 
@@ -19263,7 +19264,7 @@ svg
   .append("path")
   // .attr("fill", "rgba(100,200,0,0.5)")
   .attr("fill", "rgba(247,142,88,0.5)")
-  .attr("class", function(d,i) { return [NSW,QLD][i]; })
+  .attr("class", function(d,i) { return [BW1,BW2][i]; })
   .attr("d", area)
   .on("mouseover", function() {
     tooltip.style("display", null);
@@ -19272,12 +19273,13 @@ svg
     tooltip.style("display", "none");
   })
   .on("mousemove", function(d) {
-    var xPosition = d3.mouse(this)[0] - 15;
-    var yPosition = d3.mouse(this)[1] - 25;
+    var xPosition = d3.mouse(this)[0]-50;
+    var yPosition = d3.mouse(this)[1]-20;
     tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
     var x0 = x.invert(d3.mouse(this)[0]);
     var y0 = y.invert(d3.mouse(this)[1]);
-    tooltip.select("text").text(d3.time.format('%Y/%m/%d')(x0)+ " " +Math.round(y0));
+    tooltip.select("text").text(Math.round(y0) + " MB/sec");
+    // tooltip.select("text").text(d3.time.format('%Y/%m/%d')(x0)+ " " +Math.round(y0));
   });
 
 
