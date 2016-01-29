@@ -1,5 +1,6 @@
 var React = require('react/addons');
 var GroceryItem = require('./GroceryItem.jsx');
+var GroceryListAddItem = require('./GroceryListAddItem.jsx');
 
 module.exports = React.createClass ({
     getListItems: function () {
@@ -15,6 +16,7 @@ module.exports = React.createClass ({
               {this.getListItems()}
 
           </ul>
+          <GroceryListAddItem />
         </div>
       )
     }

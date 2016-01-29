@@ -6,15 +6,20 @@ var GroceryItemList = require('./components/GroceryItemList.jsx');
 
 var initialList = [
   {
-    name: "Ice cream"
+    name: "Ice cream",
+    purchased: true
   }, {
-    name: "Marshmellows"
+    name: "Marshmellows",
+    purchased: false
   }, {
-    name: "Tea"
+    name: "Tea",
+    purchased: false
   }, {
-    name: "Ice burger"
+    name: "Ice burger",
+    purchased: true
   }, {
-    name: "Chocolate"
+    name: "Chocolate",
+    purchased: false
   }
 ];
 
