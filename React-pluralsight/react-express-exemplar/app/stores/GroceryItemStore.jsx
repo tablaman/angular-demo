@@ -12,25 +12,6 @@ function GroceryItemStore() {
       triggerListeners();
     });
 
-    // var items = [
-    //   {
-    //     name: "Ice cream",
-    //     purchased: true
-    //   }, {
-    //     name: "Marshmellows",
-    //     purchased: false
-    //   }, {
-    //     name: "Tea",
-    //     purchased: false
-    //   }, {
-    //     name: "Ice burger",
-    //     purchased: true
-    //   }, {
-    //     name: "Chocolate",
-    //     purchased: false
-    //   }
-    // ];
-
 
   function getItems() {
     return items;
@@ -39,6 +20,11 @@ function GroceryItemStore() {
   function addGroceryItem(item) {
     items.push(item);
     triggerListeners();
+
+    helper.post("api/items", item)
+      .then(function(status){
+        console.log(status);
+      });
   }
   // delete item
   function deleteGroceryItem(item) {

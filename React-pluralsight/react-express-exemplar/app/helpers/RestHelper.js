@@ -11,5 +11,16 @@ module.exports = {
         error:error
       });
     });
+  },
+  post: function (url, data) {
+    return new Promise(function(success, error) {
+      $.ajax({
+        url:url,
+        type: "POST",
+        data:data,
+        success:success,
+        error:error
+      });
+    });
   }
 };
