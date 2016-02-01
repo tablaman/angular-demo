@@ -2,9 +2,9 @@ var uuid = require ('node-uuid');
 var listeners = {};
 
 module.exports = {
-  register: function(cb) {
-    var id = uuid.raw();
-    listeners[id] = callback;
+  register: function(cb) { // note: cb = callback
+    var id = uuid.v1();
+    listeners[id] = cb;
     return id;
   },
   dispatch: function (payload) {
@@ -15,4 +15,4 @@ module.exports = {
     }
 
   }
-}
+};

@@ -1,34 +1,76 @@
 var dispatcher = require('../dispatcher.js');
 
-function GroceryItemStore () {
+function GroceryItemStore() {
   var items = [],
-      listeners = [];
+    listeners = [];
 
-  function getItems () {
+  var items = [
+    {
+      name: "Ice cream",
+      purchased: true
+    }, {
+      name: "Marshmellows",
+      purchased: false
+    }, {
+      name: "Tea",
+      purchased: false
+    }, {
+      name: "Ice burger",
+      purchased: true
+    }, {
+      name: "Chocolate",
+      purchased: false
+    }
+  ];
+  function getItems() {
     return items;
   }
-
+  // add
   function addGroceryItem(item) {
     items.push(item);
     triggerListeners();
   }
+  // delete item
+  function deleteGroceryItem(item) {
+    var index;
+    items.filter(function(_item, _index){
+      if(_item.name == item.name) index = _index;
+    });
+    items.splice(index, 1);
+    triggerListeners();
+  }
+  // change item properties
+  function setGroceryItemBought (item, isBought) {
+    var _item = items.filter(function(a){ return a.name == item.name})[0];
+    item.purchased = isBought || false;
+    triggerListeners();
+  }
 
-  function onChange (listener) {
+  function onChange(listener) {
     listeners.push(listener);
   }
 
   function triggerListeners() {
-    changeListeners.forEach(function(listener){
-      listener(groceryItems);
+    listeners.forEach(function(listener) {
+      listener(items);
     });
   }
 
-  dispatcher.register(function(event){
+  dispatcher.register(function(event) {
     var split = event.type.split(':');
-    if (split[0]==='grocery-item') {
+    if (split[0] === 'grocery-item') {
       switch (split[1]) {
         case "add":
           addGroceryItem(event.payload);
+          break;
+        case "delete":
+          deleteGroceryItem(event.payload);
+          break;
+        case "buy":
+          setGroceryItemBought(event.payload, true);
+          break;
+        case "unbuy":
+          setGroceryItemBought(event.payload, false);
           break;
         default:
 
@@ -36,10 +78,7 @@ function GroceryItemStore () {
     }
   });
 
-  return {
-    getItems:getItems,
-    onChange:onChange
-  };
+  return {getItems: getItems, onChange: onChange};
 }
 
 module.exports = new GroceryItemStore();
