@@ -10,7 +10,7 @@ module.exports = React.createClass ({
     },
     render: function() {
       return (
-        <div>
+        <div className="row">
           <h1>Grocery List</h1>
           <ul>
               {this.getListItems()}

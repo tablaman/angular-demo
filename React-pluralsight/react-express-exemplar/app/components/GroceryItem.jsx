@@ -17,7 +17,7 @@ module.exports = React.createClass({
   render: function() {
     return (
       <li className={this.props.item.purchased ? 'strikethrough': ''}>{this.props.item.name}
-        <form className="three columns" onSubmit={this.togglePurchased}>
+        <form className="col-lg-3" onSubmit={this.togglePurchased}>
           <button className={this.props.item.purchased ? "" : "button-primary"}>
             {this.props.item.purchased ? "Unbuy" : "Buy"}
           </button>
