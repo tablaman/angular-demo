@@ -22,5 +22,27 @@ module.exports = {
         error:error
       });
     });
+  },
+  del: function (url) {
+    return new Promise(function(success, error) {
+      $.ajax({
+        url:url,
+        type: "DELETE",
+        data:data,
+        success:success,
+        error:error
+      });
+    });
+  },
+  patch: function (url, data) {
+    return new Promise(function(success, error) {
+      $.ajax({
+        url:url,
+        type: "PATCH",
+        data:data,
+        success:success,
+        error:error
+      });
+    });
   }
 };

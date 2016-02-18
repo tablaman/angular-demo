@@ -10,7 +10,7 @@ var Error404 = require('./components/error404');
 
 var ReactRouter = require('react-router');
 var createBrowserHistory = require('history/lib/createBrowserHistory');
-var createHashHistory = require('history/lib/createHashHistory');
+// var createHashHistory = require('history/lib/createHashHistory');
 var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
@@ -18,7 +18,7 @@ var Redirect = ReactRouter.Redirect;
 
 
 var routes = (
-  <Router history={createHashHistory()}>
+  <Router history={createBrowserHistory()}>
     <Route name="main" path="/" component={App}>
       <IndexRoute component={HomePage} />
       <Route path="about" component={AboutPage } />

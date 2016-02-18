@@ -19,7 +19,7 @@ module.exports = function (app) {
 
     app.route('api/items/:id')
         .delete(function(req,res){
-          GroceryItem.find({
+          GroceryItem.findOne({
             _id:req.params.id
           }).remove();
         })
