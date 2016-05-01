@@ -10,6 +10,9 @@
        <div class="col-md-4">
          <input type="text"
           [(ngModel)]="listFilter" />
+          <button *ngIf="listFilter" 
+            class="btn btn-xs"
+            (click)='clearFilter()'>clear</button>
        </div>
      </div>
      <div class="row">
