@@ -50,7 +50,8 @@
                 [style.margin.px]='imageMargin'
                 [title]='product.productName | uppercase'> 
              </td>
-             <td> {{ product.productName }} </td>
+             <td> <a [routerLink]="['ProductDetail', {id: product.productId}]">
+               {{ product.productName }}</a> </td>
              <td> {{ product.productCode | lowercase}} </td>
              <td> {{ product.releasDate }} </td>
              <td> {{ product.price | currency:'AUD' :true:'1.2-2' }} </td>
