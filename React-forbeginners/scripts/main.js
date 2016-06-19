@@ -28,6 +28,11 @@ var App = React.createClass ({
     // the following is done is such a way as to increase performance
     this.setState({ fishes: this.state.fishes })
   },
+  loadSamples: function () {
+    this.setState({
+      fishes: require('./sample-fishes')
+    })
+  },
   render: function() {
     return (
         <div className="catch-of-the-day">
@@ -35,7 +40,7 @@ var App = React.createClass ({
             <Header tagline="Fresh Seafood Market"/>
           </div>
           <Order/>
-          <Inventory addFish={this.addFish}/>
+          <Inventory addFish={this.addFish} loadSamples={this.loadSamples} />
         </div>
       )
   }
@@ -111,6 +116,7 @@ var Inventory = React.createClass({
       <div>
         <p>Inventory</p>
         <AddFishForm {...this.props} />
+        <button onClick={this.props.loadSamples}>Load Sample Fish</button>
       </div>
     )
   }
