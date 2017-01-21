@@ -6,7 +6,7 @@ class VideoDetail extends Component {
     if (!this.props.video) return <div>Loading...</div>;
 
     const { video } = this.props;
-    const url = `https://www.youtube.com/embed/${video.videoId}`;
+    const url = `https://www.youtube.com/embed/${video.id.videoId}`;
 
     return (
       <div className="video-detail col-md-8">
