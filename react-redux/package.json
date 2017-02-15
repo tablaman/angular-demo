@@ -50,9 +50,13 @@
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
+    "google-map-react": "^0.22.3",
     "lodash": "^4.17.4",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-pure-render": "^1.0.2",
+    "react-redux": "^5.0.2",
+    "redux": "^3.6.0",
     "youtube-api-search": "0.0.5"
   },
   "scripts": {
