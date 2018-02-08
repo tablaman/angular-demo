@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
-import logo from './logo.svg';
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -16,6 +15,7 @@ import Divider from 'material-ui/Divider';
 import MenuIcon from 'material-ui-icons/Menu';
 import Button from 'material-ui/Button';
 import SimpleList from './SimpleList';
+import Drafts from './Drafts';
 
 const drawerWidth = 240;
 
@@ -134,24 +134,10 @@ class App extends Component {
             </Hidden>
             <main className={classes.content}>
               <Typography noWrap="noWrap">{'You think water moves fast? You should see ice.'}</Typography>
+              <Route exact path="/drafts" component={() => <Drafts {...this.state} />}/>
             </main>
           </div>
         </div>
-
-        {/* <div className="App">
-          <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo"/>
-            <h2>Welcome to React</h2>
-          </div>
-          <p className="App-intro">
-            To get started, edit
-            <code>src/App.js</code>
-            and save to reload.
-          </p>
-          <Button variant="raised" color="primary">
-            Primary
-          </Button>
-        </div> */}
       </MuiThemeProvider>
 
     </Router>)
