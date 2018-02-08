@@ -15,6 +15,7 @@ import Hidden from 'material-ui/Hidden';
 import Divider from 'material-ui/Divider';
 import MenuIcon from 'material-ui-icons/Menu';
 import Button from 'material-ui/Button';
+import SimpleList from './SimpleList';
 
 const drawerWidth = 240;
 
@@ -86,6 +87,17 @@ class App extends Component {
   render() {
     const {classes, theme} = this.props;
     
+    const drawer = (
+     <div>
+       <div className={classes.drawerHeader} />
+       <Divider />
+       {/* <List>{mailFolderListItems}</List> */}
+       <SimpleList />
+       <Divider />
+       {/* <List>{otherMailFolderListItems}</List> */}
+     </div>
+   );
+    
     return (<Router>
       <MuiThemeProvider>
         <div className={classes.root}>
@@ -108,20 +120,16 @@ class App extends Component {
                 }} onClose={this.handleDrawerToggle} ModalProps={{
                   keepMounted: true, // Better open performance on mobile.
                 }}>
-                {/* {drawer} */}
-                <ul>
-                  <li>hello</li>
-                </ul>
+                {drawer}
+
               </Drawer>
             </Hidden>
             <Hidden smDown="smDown" implementation="css">
               <Drawer variant="permanent" open="open" classes={{
                   paper: classes.drawerPaper
                 }}>
-                {/* {drawer} */}
-                <ul>
-                  <li>hello</li>
-                </ul>
+                {drawer}
+
               </Drawer>
             </Hidden>
             <main className={classes.content}>
