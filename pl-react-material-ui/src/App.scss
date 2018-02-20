@@ -2,6 +2,12 @@
   text-align: center;
 }
 
+ body {
+   margin: 0;
+   padding: 0;
+   font-family: sans-serif;
+ }
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -26,3 +32,6 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+// Overrides
+.App-root-1 { margin-top: 0 !important; }

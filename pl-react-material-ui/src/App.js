@@ -86,7 +86,7 @@ class App extends Component {
 
   render() {
     const {classes, theme} = this.props;
-    
+
     const drawer = (
      <div>
        <div className={classes.drawerHeader} />
@@ -97,7 +97,7 @@ class App extends Component {
        {/* <List>{otherMailFolderListItems}</List> */}
      </div>
    );
-    
+
     return (<Router>
       <MuiThemeProvider>
         <div className={classes.root}>
