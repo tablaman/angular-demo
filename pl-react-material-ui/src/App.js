@@ -18,6 +18,7 @@ import AccountCircle from 'material-ui-icons/AccountCircle';
 import Button from 'material-ui/Button';
 import SimpleList from './SimpleList';
 import Drafts from './Drafts';
+import Logo from './images/PL.svg';
 
 const drawerWidth = 240;
 
@@ -79,6 +80,9 @@ const styles = theme => ({
     position: 'absolute',
     right: '2px',
     top: '12px'
+  },
+  logo: {
+    'max-width': '250px'
   }
 });
 
@@ -123,9 +127,10 @@ class App extends Component {
                 <IconButton color="inherit" aria-label="open drawer" onClick={this.handleDrawerToggle} className={classes.navIconHide}>
                   <MenuIcon/>
                 </IconButton>
-                <Typography variant="title" color="inherit" noWrap="noWrap">
+                <img src={Logo} alt="" className={classes.logo}/>
+                {/* <Typography variant="title" color="inherit" noWrap="noWrap">
                   Responsive drawer
-                </Typography>
+                </Typography> */}
                 <div>
                   <IconButton aria-owns={open
                       ? 'menu-appbar'
