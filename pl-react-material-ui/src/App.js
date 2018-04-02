@@ -13,9 +13,12 @@ import IconButton from 'material-ui/IconButton';
 import Hidden from 'material-ui/Hidden';
 import Divider from 'material-ui/Divider';
 import MenuIcon from 'material-ui-icons/Menu';
+import Menu, {MenuItem} from 'material-ui/Menu';
+import AccountCircle from 'material-ui-icons/AccountCircle';
 import Button from 'material-ui/Button';
 import SimpleList from './SimpleList';
 import Drafts from './Drafts';
+import Logo from './images/PL.svg';
 
 const drawerWidth = 240;
 
@@ -36,6 +39,8 @@ const styles = theme => ({
   appBar: {
     position: 'absolute',
     marginLeft: drawerWidth,
+    backgroundColor: '#fff',
+    color: '#333',
     [theme.breakpoints.up('md')]: {
       width: `calc(100% - ${drawerWidth}px)`
     }
@@ -70,12 +75,22 @@ const styles = theme => ({
   },
   input: {
     display: 'none'
+  },
+  iconButton: {
+    position: 'absolute',
+    right: '2px',
+    top: '12px'
+  },
+  logo: {
+    'max-width': '250px'
   }
 });
 
 class App extends Component {
   state = {
-    mobileOpen: false
+    mobileOpen: false,
+    auth: true,
+    anchorEl: null
   };
 
   handleDrawerToggle = () => {
@@ -84,19 +99,24 @@ class App extends Component {
     });
   };
 
+  handleClose = () => {
+    this.setState({anchorEl: null});
+  };
+  handleMenu = event => {
+    this.setState({anchorEl: event.currentTarget});
+  };
+  
   render() {
     const {classes, theme} = this.props;
+    const {auth, anchorEl} = this.state;
+    const open = Boolean(anchorEl);
 
-    const drawer = (
-     <div>
-       <div className={classes.drawerHeader} />
-       <Divider />
-       {/* <List>{mailFolderListItems}</List> */}
-       <SimpleList />
-       <Divider />
-       {/* <List>{otherMailFolderListItems}</List> */}
-     </div>
-   );
+    const drawer = (<div>
+      <div className={classes.drawerHeader}/>
+      <Divider/> {/* <List>{mailFolderListItems}</List> */}
+      <SimpleList/>
+      <Divider/> {/* <List>{otherMailFolderListItems}</List> */}
+    </div>);
 
     return (<Router>
       <MuiThemeProvider>
@@ -107,9 +127,30 @@ class App extends Component {
                 <IconButton color="inherit" aria-label="open drawer" onClick={this.handleDrawerToggle} className={classes.navIconHide}>
                   <MenuIcon/>
                 </IconButton>
-                <Typography variant="title" color="inherit" noWrap="noWrap">
+                <img src={Logo} alt="" className={classes.logo}/>
+                {/* <Typography variant="title" color="inherit" noWrap="noWrap">
                   Responsive drawer
-                </Typography>
+                </Typography> */}
+                <div>
+                  <IconButton aria-owns={open
+                      ? 'menu-appbar'
+                      : null} aria-haspopup="true" 
+                      onClick={this.handleMenu} 
+                      color="inherit"
+                      className={classes.iconButton}>
+                    <AccountCircle/>
+                  </IconButton>
+                  <Menu id="menu-appbar" anchorEl={anchorEl} anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right'
+                    }} transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right'
+                    }} open={open} onClose={this.handleClose}>
+                    <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                  </Menu>
+                </div>
               </Toolbar>
             </AppBar>
             <Hidden mdUp="mdUp">
@@ -134,7 +175,7 @@ class App extends Component {
             </Hidden>
             <main className={classes.content}>
               <Typography noWrap="noWrap">{'You think water moves fast? You should see ice.'}</Typography>
-              <Route exact path="/drafts" component={() => <Drafts {...this.state} />}/>
+              <Route exact="exact" path="/drafts" component={() => <Drafts {...this.state}/>}/>
             </main>
           </div>
         </div>
