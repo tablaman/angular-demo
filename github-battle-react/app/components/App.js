@@ -1,10 +1,10 @@
 import React from "react";
 import Popular from "./Popular";
-import Nav from './Nav';
+import Nav from "./Nav";
 import Home from "./Home";
 import Battle from "./Battle";
-var ReactRouter = require('react-router-dom');
-
+import Results from "./Results";
+var ReactRouter = require("react-router-dom");
 
 const Router = ReactRouter.BrowserRouter;
 const Route = ReactRouter.Route;
@@ -17,14 +17,14 @@ class App extends React.Component {
     return (
       <Router>
         <div className="container">
-        <Nav />
+          <Nav />
           <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/popular" component={Popular} />
-          <Route path="/battle" component={Battle} />
-          <Route render={() => <h1>Not Found!</h1> } />
-
-            </Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/battle" component={Battle} />
+            <Route path="/popular" component={Popular} />
+            <Route path="/battle/results" component={Results} />
+            <Route render={() => <h1>Not Found!</h1>} />
+          </Switch>
         </div>
       </Router>
     );
