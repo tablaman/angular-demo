@@ -3,20 +3,17 @@ import axios from 'axios';
 // In the event you get Permission Denied errors, you will need to obtain the relevant credentials.
 const id = "tablaman";
 const sec = "YOUR_SECRET_ID";
-const params = "?client_id=" + id + "&client_secret=" + sec;
+const params = `?client_id=${id}&client_secret=${sec}`;
 
 
 function getProfile (username) {
-  return axios.get('https://api.github.com/users/' + username + params)
-    .then(user => {
-        
-      return user.data;
-    });
+  return axios.get(`https://api.github.com/users/${username}${params}`)
+    .then(({data}) => data);
 }
 
 function getRepos (username) {
   return axios
-    .get("https://api.github.com/users/" + username + '/repos' + params + '&per_page=100')
+    .get(`https://api.github.com/users/${username}/repos${params}&per_page=100`)
     .then(user => {
       return user.data;
     });
@@ -26,24 +23,23 @@ function getStarCount (repos) {
   // NB, repos.data doesn't exist in the data returning...
   if (!repos.data) return 1000;
   else {
-    return repos.data.reduce((count, repo) => {
-      return count + repo.stargazers_count;
+    return repos.data.reduce((count, { stargazers_count }) => {
+      return count + stargazers_count;
     }, 0);
   }
 }
 
-function calculateScore (profile, repos) {
-  const followers = profile.followers;
-  const totalStars = getStarCount(repos);
-
-  return (followers * 3) + totalStars;
+function calculateScore ({followers}, repos) {
+  return followers * 3 + getStarCount(repos);
 }
 
 function getUserData (player) {
   // axios.all() will take a bunch of promises and when all have run, 
   // will then call the final function.
+  // Note, using refactoring, we're now using Promise.all
+  // This means we need to have 'babel-polyfill' addon in webpack
   
-  return axios.all ([
+  return Promise.all ([
     getProfile(player),
     getRepos(player)
   ]).then(data => {

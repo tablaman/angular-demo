@@ -22,31 +22,41 @@ class PlayerInput extends React.Component {
 
     this.props.onSubmit(this.props.id, this.state.username);
   }
-  handleChange(event) {
-    let value = event.target.value;
+  /*  Note: about capturing events
+      The reason is that when the callback function runs, 
+      the value behind `event` may be long gone!
+      So, make sure you first capture the event in another variable 
+      at that point in time.
 
-    this.setState(() => {
-      return { username: value };
-    });
+  */
+  handleChange(event) {
+    
+    let value = event.target.value;
+    console.log(`change ${value}`);
+
+    this.setState(() => ({ username: value }));
   }
   render() {
+    const { username } = this.state;
+    const { label } = this.props;
+
     return (
       <form action="" className="column" onSubmit={this.handleSubmit}>
         <label htmlFor="username" className="header">
-          {this.props.label}
+          {label}
         </label>
         <input
           type="text"
           id="username"
           placeholder="github username"
           autoComplete="off"
-          value={this.state.username}
+          value={username}
           onChange={this.handleChange}
         />
         <button
           className="button"
           type="submit"
-          disabled={!this.state.username}
+          disabled={!username}
         >
           Submit
         </button>
@@ -76,22 +86,27 @@ class Battle extends React.Component {
     this.handleReset = this.handleReset.bind(this);
   }
   handleSubmit(id, username) {
-    this.setState(() => {
-      const newState = {};
-      newState[id + "Name"] = username;
-      newState[id + "Image"] = "https://github.com/" + username;
+     // The old ES5 way!
+    // this.setState(() => {
+    //   const newState = {};
+    //   newState[id + "Name"] = username;
+    //   newState[id + "Image"] = "https://github.com/" + username;
 
-      return newState;
-    });
+    //   return newState;
+    // });
+
+    // The new ES6 way
+    // Using computed property names
+    this.setState(() => ({
+      [id + 'Name']: username,
+      [id + 'Image']: `https://github.com/${username}.png?size=200`
+    }));
   }
   handleReset(id) {
-    this.setState(() => {
-      const newState = {};
-      newState[id + "Name"] = "";
-      newState[id + "Image"] = null;
-
-      return newState;
-    });
+    this.setState(() => ({
+      [id + "Name"]: "",
+      [id + "Image"]: null
+    }));
   }
   render() {
     const {
@@ -119,7 +134,7 @@ class Battle extends React.Component {
             >
               <button
                 className="reset"
-                onClick={this.handleReset.bind(null, 'playerOne')}
+                onClick={() => this.handleReset('playerOne')}
               >
                 reset
               </button>
@@ -140,7 +155,7 @@ class Battle extends React.Component {
 
             <button
                 className="reset"
-                onClick={this.handleReset.bind(null, 'playerTwo')}
+                onClick={() => this.handleReset('playerTwo')}
               >
                 reset
               </button>

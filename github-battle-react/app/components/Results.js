@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import PlayerPreview from "./PlayerPreview";
 import Loading from "./Loading";
-const Profile = ({info}) => {
+const Profile = ({ info }) => {
   return (
     <PlayerPreview avatar={info.avatar_url} username={info.login}>
       <ul className='space-list-items'>
@@ -24,12 +24,12 @@ const Profile = ({info}) => {
 Profile.propTypes = {
   avatar: PropTypes.string.isRequired,
 }
-const Player = props => {
+const Player = ({ label, score, profile }) => {
   return (
     <div>
-      <h1 className="header">{props.label}</h1>
-      <h3 style={{textAlign: 'center'}}>Score {props.score}</h3>
-    <Profile info={props.profile} />
+      <h1 className="header">{label}</h1>
+      <h3 style={{textAlign: 'center'}}>Score {score}</h3>
+    <Profile info={profile} />
     </div>
   )
 }
@@ -49,19 +49,17 @@ class Results extends React.Component {
     };
   }
 
-  componentWillMount() {
-    const players = queryString.parse(this.props.location.search);
-    console.log(players);
+  componentDidMount() {
+    const { playerOneName, playerTwoName } = queryString.parse(this.props.location.search);
 
-    api.battle([players.playerOneName, players.playerTwoName]).then(results => {
+    api.battle([playerOneName, playerTwoName]).then(results => {
       if (results === null) {
-        return this.setState(() => {
-          return {
+        return this.setState(() =>  ({
             error: "Looks like there was error. Check results on Github 😬",
             loading: false
-          };
-        });
+          }));
       }
+      // here we have left a 'return' deliberately :) 
       this.setState(() => {
         return {
           error: null,

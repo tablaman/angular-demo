@@ -2,8 +2,12 @@ var path = require("path");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var webpack = require('webpack');
 
+// Note: babel-polyfill:
+// We're using babel polyfill here to allow us to use Promise.all, instead of axios.all()
+
+
 var config = {
-  entry: "./app/index.js",
+  entry: ["babel-polyfill", "./app/index.js"],
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "index_bundle.js",
@@ -59,4 +63,4 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-module.export = config;
+module.exports = config;
