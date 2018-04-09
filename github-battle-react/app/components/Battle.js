@@ -4,24 +4,26 @@ import PropTypes from "prop-types";
 import PlayerPreview from "./PlayerPreview";
 
 class PlayerInput extends React.Component {
-  constructor(props) {
-    super(props);
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    onSubmit: PropTypes.func.isRequired
+  };
+  static defaultProps = {
+    label: "Usernam =>e"
+  };
+  state = {
+    username: "",
+    playerTwoName: "",
+    playerOneImage: null,
+    playerTwoImage: null
+  };
 
-    this.state = {
-      username: "",
-      playerTwoName: "",
-      playerOneImage: null,
-      playerTwoImage: null
-    };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault();
 
     this.props.onSubmit(this.props.id, this.state.username);
-  }
+  };
   /*  Note: about capturing events
       The reason is that when the callback function runs, 
       the value behind `event` may be long gone!
@@ -29,13 +31,12 @@ class PlayerInput extends React.Component {
       at that point in time.
 
   */
-  handleChange(event) {
-    
+  handleChange = event => {
     let value = event.target.value;
     console.log(`change ${value}`);
 
     this.setState(() => ({ username: value }));
-  }
+  };
   render() {
     const { username } = this.state;
     const { label } = this.props;
@@ -53,11 +54,7 @@ class PlayerInput extends React.Component {
           value={username}
           onChange={this.handleChange}
         />
-        <button
-          className="button"
-          type="submit"
-          disabled={!username}
-        >
+        <button className="button" type="submit" disabled={!username}>
           Submit
         </button>
       </form>
@@ -65,28 +62,24 @@ class PlayerInput extends React.Component {
   }
 }
 
-PlayerInput.propTypes = {
-  id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func.isRequired
-};
+// older implementation without the use of
+// `transform-class-properties`
+
+// PlayerInput.propTypes = {
+//   id: PropTypes.string.isRequired,
+//   label: PropTypes.string.isRequired,
+//   onSubmit: PropTypes.func.isRequired
+// };
 
 class Battle extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      playerOneName: "",
-      playerTwoName: "",
-      playerOneImage: null,
-      playerTwoImage: null
-    };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleReset = this.handleReset.bind(this);
-  }
-  handleSubmit(id, username) {
-     // The old ES5 way!
+  state = {
+    playerOneName: "",
+    playerTwoName: "",
+    playerOneImage: null,
+    playerTwoImage: null
+  };
+  handleSubmit = (id, username) => {
+    // The old ES5 way!
     // this.setState(() => {
     //   const newState = {};
     //   newState[id + "Name"] = username;
@@ -98,16 +91,16 @@ class Battle extends React.Component {
     // The new ES6 way
     // Using computed property names
     this.setState(() => ({
-      [id + 'Name']: username,
-      [id + 'Image']: `https://github.com/${username}.png?size=200`
+      [id + "Name"]: username,
+      [id + "Image"]: `https://github.com/${username}.png?size=200`
     }));
-  }
-  handleReset(id) {
+  };
+  handleReset = id => {
     this.setState(() => ({
       [id + "Name"]: "",
       [id + "Image"]: null
     }));
-  }
+  };
   render() {
     const {
       playerOneName,
@@ -128,13 +121,10 @@ class Battle extends React.Component {
             />
           )}
           {playerOneImage !== null && (
-            <PlayerPreview
-              avatar={playerOneImage}
-              username={playerOneName}
-            >
+            <PlayerPreview avatar={playerOneImage} username={playerOneName}>
               <button
                 className="reset"
-                onClick={() => this.handleReset('playerOne')}
+                onClick={() => this.handleReset("playerOne")}
               >
                 reset
               </button>
@@ -148,14 +138,10 @@ class Battle extends React.Component {
             />
           )}
           {playerTwoImage !== null && (
-            <PlayerPreview
-              avatar={playerTwoImage}
-              username={playerTwoName}
-            >
-
-            <button
+            <PlayerPreview avatar={playerTwoImage} username={playerTwoName}>
+              <button
                 className="reset"
-                onClick={() => this.handleReset('playerTwo')}
+                onClick={() => this.handleReset("playerTwo")}
               >
                 reset
               </button>

@@ -4,11 +4,8 @@ import Nav from "./Nav";
 import Home from "./Home";
 import Battle from "./Battle";
 import Results from "./Results";
-var ReactRouter = require("react-router-dom");
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-const Router = ReactRouter.BrowserRouter;
-const Route = ReactRouter.Route;
-const Switch = ReactRouter.Switch;
 
 // TODO:
 

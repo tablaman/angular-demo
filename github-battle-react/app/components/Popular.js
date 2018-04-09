@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import api from "../utils/api";
+import { fetchPopularRepos } from "../utils/api";
 import Loading from "./Loading";
 
 function SelectLanguage({ selectedLanguage, onSelect }) {
@@ -69,21 +69,35 @@ class Popular extends React.Component {
   componentDidMount() {
     this.updateLanguage(this.state.selectedLanguage);
   }
-  updateLanguage(lang) {
+  
+  // The new ASYNC/AWAIT combo!
+  updateLanguage = async (lang) => {
     console.log("hi", lang);
-
-    // this.setState(function() {
-    //     return { selectedLanguage: lang, repos: null };
-    //   });
+    
     this.setState(() => {
       return {
         selectedLanguage: lang,
         repos: null
       };
     });
-    api.fetchPopularRepos(lang)
-      .then((repos) => { this.setState(() => ({repos})) });
+
+    const repos = await fetchPopularRepos(lang);
+    this.setState(() => ({repos}));
   }
+
+  // old way of doing it using promises
+  // updateLanguage(lang) {
+  //   console.log("hi", lang);
+
+  //   this.setState(() => {
+  //     return {
+  //       selectedLanguage: lang,
+  //       repos: null
+  //     };
+  //   });
+  //   fetchPopularRepos(lang)
+  //     .then((repos) => { this.setState(() => ({repos})) });
+  // }
 
   render() {
     const {selectedLanguage, repos} = this.state;
