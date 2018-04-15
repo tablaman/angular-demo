@@ -6,9 +6,9 @@ const sec = "YOUR_SECRET_ID";
 const params = `?client_id=${id}&client_secret=${sec}`;
 
 
-function getProfile (username) {
-  return axios.get(`https://api.github.com/users/${username}${params}`)
-    .then(({data}) => data);
+async function getProfile (username) {
+  const profile = await axios.get(`https://api.github.com/users/${username}${params}`)
+  return profile.data;
 }
 
 function getRepos (username) {
@@ -33,21 +33,32 @@ function calculateScore ({followers}, repos) {
   return followers * 3 + getStarCount(repos);
 }
 
-function getUserData (player) {
+async function getUserData (player) {
+  const [ profile, repos ] = await Promise.all ([
+    getProfile(player),
+    getRepos(player)
+  ])
   // axios.all() will take a bunch of promises and when all have run, 
   // will then call the final function.
   // Note, using refactoring, we're now using Promise.all
   // This means we need to have 'babel-polyfill' addon in webpack
+
+  // using await
+  return {
+    profile,
+    score: calculateScore(profile, repos)
+  }
   
-  return Promise.all ([
-    getProfile(player),
-    getRepos(player)
-  ]).then(data => {
-    const profile = data[0];
-    const repos = data[0];
-    // console.log(`profile and repo> ${profile}, ${repos}`);
-    return { profile: profile, score: calculateScore(profile, repos)}
-  });
+  // older code
+  // return Promise.all ([
+  //   getProfile(player),
+  //   getRepos(player)
+  // ]).then(data => {
+  //   const profile = data[0];
+  //   const repos = data[0];
+  //   // console.log(`profile and repo> ${profile}, ${repos}`);
+  //   return { profile: profile, score: calculateScore(profile, repos)}
+  // });
 
 }
 
@@ -64,23 +75,30 @@ function handleError (error) {
   
 }
 
-export function battle (players) {
-  return axios.all(players.map(getUserData))
-  .then(sortPlayers)
-  .catch(handleError)
-  
+export async function battle (players) {
+  const results = await Promise.all(players.map(getUserData)).catch(handleError);
+
+  return results === null
+    ? results
+    : sortPlayers(results);
 }
-export function fetchPopularRepos (language) {
+export async function fetchPopularRepos (language) {
 
   var encodedURI = window.encodeURI(
     "https://api.github.com/search/repositories?q=stars:>1+language:" +
       language +
       "&sort=stars&order=desc&type=Repositories"
   );
+
+  const repos = await axios.get(encodedURI)
+    .catch(handleError);
+
+  return repos.data.items;
   
-  return axios.get(encodedURI).then(function(response) {
-    return response.data.items;
-  });
+  // older way to do it without async/await
+  // return axios.get(encodedURI).then(function(response) {
+  //   return response.data.items;
+  // });
 }
 
 // old 
