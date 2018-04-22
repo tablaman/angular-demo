@@ -1,8 +1,4 @@
-// Using Fetch instead of axios
-// Adding pollyfill using watwg-fetch
-// fetch won't return `data` object, so need to remove it.
-
-// import axios from 'axios';
+import axios from 'axios';
 
 // In the event you get Permission Denied errors, you will need to obtain the relevant credentials.
 const id = "tablaman";
@@ -11,22 +7,23 @@ const params = `?client_id=${id}&client_secret=${sec}`;
 
 
 async function getProfile (username) {
-  const response = await fetch(`https://api.github.com/users/${username}${params}`)
-  return response.json();
+  const profile = await axios.get(`https://api.github.com/users/${username}${params}`)
+  return profile.data;
 }
 
-async function getRepos (username) {
-  const response = await fetch (`https://api.github.com/users/${username}/repos${params}&per_page=100`)
-
-  return response.json();
-
+function getRepos (username) {
+  return axios
+    .get(`https://api.github.com/users/${username}/repos${params}&per_page=100`)
+    .then(user => {
+      return user.data;
+    });
 }
 
 function getStarCount (repos) {
   // NB, repos.data doesn't exist in the data returning...
   if (!repos.data) return 1000;
   else {
-    return repos.reduce((count, { stargazers_count }) => {
+    return repos.data.reduce((count, { stargazers_count }) => {
       return count + stargazers_count;
     }, 0);
   }
@@ -93,16 +90,13 @@ export async function fetchPopularRepos (language) {
       "&sort=stars&order=desc&type=Repositories"
   );
 
-  const response = await fetch(encodedURI)
+  const repos = await axios.get(encodedURI)
     .catch(handleError);
 
-  const repos = response.json();
-  console.log(repos);
-  
-  return repos.items;
+  return repos.data.items;
   
   // older way to do it without async/await
-  // return fetch(encodedURI).then(function(response) {
+  // return axios.get(encodedURI).then(function(response) {
   //   return response.data.items;
   // });
 }
