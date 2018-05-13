@@ -12,6 +12,7 @@
     
     <script src='https://unpkg.com/@babel/standalone/babel.min.js'></script>
     <script src='https://tylermcginnis.com/goals-todos-api/index.js'></script>
+    <script src='https://unpkg.com/redux-thunk@2.2.0/dist/redux-think.min.js'></script>
   </head>
   <body>
     <noscript>
@@ -108,6 +109,10 @@
   class App extends React.Component {
     componentDidMount() {
       const { store } = this.props;
+
+      store.dispatch(handleInitialData());
+
+
       // TODO: please refactor into action creators
       Promise.all([
         API.fetchTodos(),
@@ -225,7 +230,7 @@
         return (dispatch) => {
           return API.saveGoal(name)
             .then((goal) => {
-              console.log(goal)
+              console.log(goal);
               dispatch(addGoalAction(goal))
               callback();
             })
@@ -268,6 +273,18 @@
         }
       }
 
+      function handleInitialData() {
+        return dispatch => {
+          return Promise.all([
+            API.fetchTodos(),
+            API.fetchGoals(),
+          ]).then(([ todos, goals ]) => {
+            dispatch(receiveDataAction(todos, goals))
+        
+          });
+        }
+      }
+
 
       // REDUX MIDDLEWARE implementation
       const checker = store => next => action => {
@@ -298,13 +315,14 @@
       }
       
       // Thunks
-      const thunk = store => next => action => {
-        if (typeof action === 'function') {
-          return action(store.dispatch);
-        }
+      // An example of what you get with ReduxThunk!
+      // const thunk = store => next => action => {
+      //   if (typeof action === 'function') {
+      //     return action(store.dispatch);
+      //   }
 
-        return next(action);
-      }
+      //   return next(action);
+      // }
 
       // REDUCERS
       function todos(state = [], action) {
@@ -355,7 +373,7 @@
         todos,
         goals,
         loading
-      }), Redux.applyMiddleware(thunk, checker, logger));
+      }), Redux.applyMiddleware(ReduxThunk.default, checker, logger));
 
  
 
