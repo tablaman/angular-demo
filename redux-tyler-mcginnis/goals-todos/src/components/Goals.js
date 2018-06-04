@@ -14,8 +14,8 @@ class Goals extends React.Component {
     e.preventDefault()
 
     this.props.dispatch(handleAddGoal(
-      this.input.value,
-      () => this.input.value = ''
+      this.goalInput.value,
+      () => this.goalInput.value = ''
     ))
   }
   removeItem = (goal) => {
@@ -28,7 +28,7 @@ class Goals extends React.Component {
         <input
           type='text'
           placeholder='Add Goal'
-          ref={(input) => this.input = input}
+          ref={(input) => this.goalInput = input}
         />
         <button onClick={this.addItem}>Add Goal</button>
 

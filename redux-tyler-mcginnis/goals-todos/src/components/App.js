@@ -23,10 +23,10 @@ class App extends React.Component {
     }
 
     return (
-      <div>
+      <React.Fragment>
         <ConnectedTodos />
         <ConnectedGoals />
-      </div>
+      </React.Fragment>
     )
   }
 }

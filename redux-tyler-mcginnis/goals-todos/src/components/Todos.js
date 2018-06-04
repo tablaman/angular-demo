@@ -12,7 +12,7 @@ class Todos extends React.Component {
     e.preventDefault();
 
     this.props.dispatch(
-      handleAddTodo(this.input.value, () => (this.input.value = ""))
+      handleAddTodo(this.todoInput.value, () => (this.todoInput.value = ""))
     );
   };
   removeItem = todo => {
@@ -28,7 +28,7 @@ class Todos extends React.Component {
         <input
           type="text"
           placeholder="Add Todo"
-          ref={input => (this.input = input)}
+          ref={input => (this.todoInput = input)}
         />
         <button onClick={this.addItem}>Add Todo</button>
         <List

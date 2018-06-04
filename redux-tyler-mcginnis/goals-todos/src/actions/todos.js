@@ -38,10 +38,6 @@ export function handleDeleteTodo(todo) {
   }
 }
 
-
-
-
-
 export function handleAddTodo(name, cb) {
   return (dispatch) => {
     return API.saveTodo(name)
