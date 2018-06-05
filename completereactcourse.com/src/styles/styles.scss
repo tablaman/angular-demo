@@ -1,0 +1,12 @@
+
+@import './base/_base';
+
+$hello: #333;
+
+body {
+  color: blueviolet;
+  // background-color: $hello;
+  h1 {
+    background: #333
+  }
+}
