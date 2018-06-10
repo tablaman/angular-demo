@@ -5,6 +5,7 @@ config = {
 };
 
 module.exports = {
+  // entry: './src/playground/higher-order-comp.js',
   entry: './src/app.js',
   output: {
     path: config.workingFolder,
