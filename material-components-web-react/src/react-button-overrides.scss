@@ -1,0 +1,5 @@
+// ./react-button-overrides.scss
+@import "@material/button/mixins";
+.button-alternate {
+  @include mdc-button-container-fill-color(rgb(37, 138, 172));
+}
