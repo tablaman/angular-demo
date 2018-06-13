@@ -5,6 +5,8 @@ import { Button } from "rmwc/Button";
 import { IconToggle } from "rmwc/IconToggle";
 import { SimpleDialog } from "rmwc/Dialog";
 import { Select } from "rmwc/Select";
+import { Grid, GridCell } from "rmwc/Grid";
+
 
 class App extends Component {
   state = {
@@ -41,7 +43,7 @@ class App extends Component {
         >
           Open Simple Dialog
         </Button>
-        <br/>
+        <br />
         <Select
           label="Formatted"
           options={[
@@ -70,6 +72,12 @@ class App extends Component {
             }
           ]}
         />
+
+        <Grid>
+          <GridCell span="4">1</GridCell>
+          <GridCell span="4">2</GridCell>
+          <GridCell span="4">3</GridCell>
+        </Grid>
       </div>
     );
   }

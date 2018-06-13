@@ -3,12 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material/textfield": "^0.36.0",
+    "classnames": "^2.2.6",
     "material-icons": "^0.2.3",
     "node-sass-chokidar": "^1.3.0",
     "npm-run-all": "^4.1.3",
+    "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-scripts": "1.1.4",
+    "react-toolbox": "^2.0.0-beta.13",
+    "react-transition-group": "^2.3.1",
     "rmwc": "^1.6.4"
   },
   "scripts": {
