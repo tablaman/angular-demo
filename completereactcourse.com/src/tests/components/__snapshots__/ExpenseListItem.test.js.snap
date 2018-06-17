@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render ExpenseListItem with fixture data 1`] = `
+<li>
+  <h3>
+    <Link
+      replace={false}
+      to="/edit/1"
+    >
+      Gum
+       
+    </Link>
+  </h3>
+  <p>
+    195
+     - 
+    0
+  </p>
+  <span />
+</li>
+`;

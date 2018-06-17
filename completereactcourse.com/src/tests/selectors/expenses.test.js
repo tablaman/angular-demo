@@ -10,7 +10,7 @@ test('should filter by text value', () => {
     endDate: undefined
   }
   const result = selectExpenses(expenses, filters);
-  expect(result).toEqual([ expenses[1], expenses[2]]);
+  expect(result).toEqual([ expenses[2], expenses[1]]);
 })
 // supposed to get expenses[0] and expenses[2] but getting all 3!
 test('should filter by start date', () => {
@@ -21,7 +21,7 @@ test('should filter by start date', () => {
     endDate: undefined
   }
   const result = selectExpenses(expenses, filters);
-  expect(result).toEqual([expenses[0], expenses[1] ,expenses[2]]);
+  expect(result).toEqual([expenses[2], expenses[0]]);
 })
 // test('should filter by start date', () => {
 //   const filters = {

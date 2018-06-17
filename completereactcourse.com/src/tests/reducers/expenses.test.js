@@ -32,7 +32,7 @@ test ('should add an expense', () => {
       description: 'Gum New Expense',
       note: '',
       amount: 19,
-      createAt: 1500
+      createdAt: 1500
     }
   };
   const state = expensesReducer(expenses, action)

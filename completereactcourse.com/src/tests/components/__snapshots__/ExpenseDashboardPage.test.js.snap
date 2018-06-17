@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render ExpenseListItem with fixture data 1`] = `
+<div>
+   Dashboard: expense page
+  <Link
+    replace={false}
+    to="/create"
+  >
+    Create something
+  </Link>
+  <Connect(ExpenseListFilters) />
+  <Connect(ExpenseList) />
+</div>
+`;
