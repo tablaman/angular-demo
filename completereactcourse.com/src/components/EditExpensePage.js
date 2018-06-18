@@ -5,30 +5,39 @@ import { connect } from "react-redux";
 import ExpenseForm from "./ExpenseForm";
 import { editExpense, removeExpense } from "../actions/expenses";
 
-const EditExpensePage = props => (
-  <div>
-    Edit expense page
-    <Link to="/create">Create something</Link>
-    <ExpenseForm
-      expense={props.expense}
-      onSubmit={expense => {
-        console.log("updated", expense);
+export class EditExpensePage extends React.Component {
+  handleOnSubmit = expense => {
+    this.props.editExpense({
+      id: this.props.expense.id,
+      updates: expense
+    });
+    this.props.history.push("/");
+  }
+  handleRemoveExpense = expense => {
+    this.props.removeExpense({
+      id: this.props.expense.id
+    });
+    this.props.history.push("/");
+  }
+  render () {
+    return (
+      <div>
+        Edit expense page
+        <Link to="/create">Create something</Link>
+        <ExpenseForm
+          expense={this.props.expense}
+          onSubmit={this.handleOnSubmit}
+        />
+        <button
+          onClick={this.handleRemoveExpense}
+        >
+          Remove
+        </button>
+      </div>
 
-        props.dispatch(editExpense({ id: props.expense.id, updates: expense }));
-        props.history.push("/");
-      }}
-    />
-    <button
-      onClick={() => {
-        props.dispatch(removeExpense({ id: props.expense.id }));
-        props.history.push("/");
-      }}
-    >
-      Remove
-    </button>
-  </div>
-);
-
+    )
+  }
+}
 const mapStateToProps = (state, props) => {
   return {
     expense: state.expenses.find(
@@ -37,4 +46,8 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default connect(mapStateToProps)(EditExpensePage);
+const mapDispatchToProps = (dispatch, props) => ({
+  editExpense: (id, expense) => dispatch(editExpense(id, expense)),
+  removeExpense: (data) => dispatch(removeExpense(data))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(EditExpensePage);
