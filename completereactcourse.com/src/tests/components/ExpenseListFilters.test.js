@@ -1,6 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ExpenseListFilters } from '../../components/ExpenseListFilters';
+import {
+  ExpenseListFilters
+}
+from '../../components/ExpenseListFilters';
 import { filters, altFilters } from '../fixtures/filters';
 
 let setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate;
@@ -27,3 +30,10 @@ beforeEach(() => {
 test('should render ExpenseListFilters correctly', () => {
   expect(wrapper).toMatchSnapshot();
 })
+// test('should render ExpenseListFilters with alt data correctly', () => {
+//   wrapper.setProps({
+//     filters: altFilters
+//   });
+//   expect(wrapper).toMatchSnapshot();
+// })
+
