@@ -10,7 +10,16 @@ const promise = new Promise((resolve, reject) => {
 promise.then((data) => {
   console.log(data);
   
-}).catch((err) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('this is my other promise')
+    }, 3000);
+  })
+})
+.then(someDataString => {
+  console.log(someDataString);
+})
+.catch((err) => {
   console.log(err)
 })
 
