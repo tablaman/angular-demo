@@ -4,6 +4,7 @@
 import * as firebase from 'firebase';
 
 
+
 // Initialize Firebase
 const config = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -16,8 +17,9 @@ const config = {
 firebase.initializeApp(config);
 
 const database = firebase.database();
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-export { firebase, database as default }
+export { firebase, googleAuthProvider, database as default }
 
 // database.ref()
 //   .once('value')
@@ -47,7 +49,7 @@ export { firebase, database as default }
 
 
 // ref() <-- root of db
-// database.ref().set({
+// database.ref().set({yarn 
 //   name: 'Milinda',
 //   age: 26,
 //   isSingle: false,

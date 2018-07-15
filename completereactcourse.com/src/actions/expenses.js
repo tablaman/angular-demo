@@ -18,10 +18,6 @@ import database from '../firebase/firebase';
 //   }
 // });
 
-export const addExpense = expense => ({
-  type: 'ADD_EXPENSE',
-  expense
-});
 export const startAddExpense = (expenseData = {}) => {
   return (dispatch) => {
     const {
@@ -39,6 +35,10 @@ export const startAddExpense = (expenseData = {}) => {
     })
   }
 };
+export const addExpense = expense => ({
+  type: 'ADD_EXPENSE',
+  expense
+});
 // REMOVE_EXPENSE
 export const removeExpense = ({
   id

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render ExpenseListItem with fixture data 1`] = `
+<div>
+  LOGIN PAGE
+  <h1>
+    Login
+  </h1>
+  <button
+    onClick={[Function]}
+  />
+</div>
+`;
