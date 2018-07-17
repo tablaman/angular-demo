@@ -33,5 +33,10 @@ exports[`should render Header corretly 1`] = `
   >
     Help
   </NavLink>
+  <button
+    onClick={[Function]}
+  >
+    logout
+  </button>
 </React.Fragment>
 `;

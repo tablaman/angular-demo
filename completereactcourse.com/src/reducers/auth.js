@@ -1,13 +1,13 @@
-const helpReducerDefaultState = {};
 // AUTH REDUCER
-const authReducer = (state = authReducerDefaultState, action) => {
+const authReducer = (state = {}, action) => {
   switch (action.type) {
-    case 'LOGIN_USER':
+    case 'LOGIN':
       return {
-        ...state,
-        creds: action.creds
+        uid: action.uid
       };
-
+    
+    case 'LOGOUT':
+      return {}
     default:
       return state;
   }

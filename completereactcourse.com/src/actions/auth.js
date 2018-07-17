@@ -1,9 +1,12 @@
 import uuid from 'uuid';
 import { firebase, googleAuthProvider } from '../firebase/firebase';
 
-export const loginUser = creds => ({
-  type: 'LOGIN_USER',
-  creds
+export const login = uid => ({
+  type: 'LOGIN',
+  uid
+});
+export const logout = uid => ({
+  type: 'LOGOUT'
 });
 
 export const startLogin = () => {
