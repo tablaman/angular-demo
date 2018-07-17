@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import createHistory from 'history/createBrowserHistory';
+import { Router, Route, Switch, Link } from "react-router-dom";
 import ExpenseDashboardPage from "../components/ExpenseDashboardPage";
 import AddExpensePage from "../components/AddExpensePage";
 import EditExpensePage from "../components/EditExpensePage";
@@ -9,9 +10,12 @@ import NotFound from "../components/NotFoundPage";
 import Header from "../components/Header";
 import LoginPage from "../components/LoginPage";
 
+// we use regular history so that history will be available
+// anywhere, even outside of components
+export const history = createHistory();
 
 const AppRouter = () => (
-  <BrowserRouter>
+  <Router history={history}>
     <div>
       <Header />
       <Switch>
@@ -23,7 +27,7 @@ const AppRouter = () => (
         <Route component={NotFound} />
       </Switch>
     </div>
-  </BrowserRouter>
+  </Router>
 );
 
 export default AppRouter;

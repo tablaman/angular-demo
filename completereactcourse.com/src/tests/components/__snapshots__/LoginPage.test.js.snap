@@ -6,8 +6,8 @@ exports[`render ExpenseListItem with fixture data 1`] = `
   <h1>
     Login
   </h1>
-  <button
-    onClick={[Function]}
-  />
+  <button>
+    Login
+  </button>
 </div>
 `;
