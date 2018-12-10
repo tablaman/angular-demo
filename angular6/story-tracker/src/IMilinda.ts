@@ -1,0 +1,3 @@
+interface IMilinda {
+  iDo():string
+}
